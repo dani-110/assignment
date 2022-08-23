@@ -1,1 +1,1 @@
-export { movieDetail } from './FavMovie/action'
+export { tokenValue } from './token/action';

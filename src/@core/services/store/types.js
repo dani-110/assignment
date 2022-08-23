@@ -1,1 +1,1 @@
-export const FavMovie = 'FavMovie'
+export const Token = 'Token';

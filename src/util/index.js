@@ -1,0 +1,27 @@
+import { MessageBarManager } from "react-native-message-bar";
+
+const MESSAGE_TYPES = {
+    INFO: "info",
+    ERROR: "error",
+    SUCCESS: "success"
+};
+
+class Util {
+    isEmailValid(email: string) {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+    isPasswordValid(password: string) {
+        const re = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/
+        return re.test(password)
+    }
+    topAlertError(message, alertType = MESSAGE_TYPES.ERROR) {
+        MessageBarManager.showAlert({
+            message,
+            alertType
+        });
+    }
+}
+
+
+export default new Util();
