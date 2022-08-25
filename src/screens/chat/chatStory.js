@@ -16,7 +16,9 @@ export const ChatStory = (props) => {
     const {
         text,
         setText,
-        newChat
+        newChat,
+        sendMsg,
+        messages
     } = props
 
     const obj = [
@@ -75,13 +77,14 @@ export const ChatStory = (props) => {
             }
             <ScrollView style={{ flex: 1 }}>
                 {!newChat ?
-                    obj.map((item, index) => (
+                    messages.map((item, index) => (
                         <ChatBubble item={item} />
                     ))
                     : null
                 }
             </ScrollView>
             <MsgInput
+                sendMsg={sendMsg}
                 text={text}
                 setText={setText}
             />

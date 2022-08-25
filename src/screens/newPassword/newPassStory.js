@@ -12,6 +12,7 @@ import { Colors } from '../../constants/colors';
 import { BkcView } from '../../shared/components/BkcView/bkcView';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Circle } from '../../shared/components/Circle/circle';
+import MessageBar from '../../shared/components/MessageBar';
 
 export const NewPassStory = (props) => {
     const {
@@ -27,10 +28,10 @@ export const NewPassStory = (props) => {
         secureTextEntry2,
         toggleSecureEntry2,
         secureTextEntry3,
-        toggleSecureEntry3
+        toggleSecureEntry3,
+        resetPassword,
+        saveDisable
     } = props
-
-    console.log(updatePass)
 
     const renderIcon = (props, toggleSecureEntry) => (
         <TouchableWithoutFeedback onPress={toggleSecureEntry}>
@@ -72,10 +73,11 @@ export const NewPassStory = (props) => {
                 <View style={{ flex: 1 }}>
                     {inputs()}
                     <View style={{ alignItems: 'center', paddingTop: hp('5%') }}>
-                        <DoneButton text={'PROCEED'} colors={['#9C00FF', '#9C00FF']} style={{ width: '50%' }} />
+                        <DoneButton disabled={saveDisable} func={resetPassword} text={'Save'} colors={['#9C00FF', '#9C00FF']} style={{ width: '50%' }} />
                     </View>
                 </View>
             </View>
+            <MessageBar />
         </BkcView>
     )
 }

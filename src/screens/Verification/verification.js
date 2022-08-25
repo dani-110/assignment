@@ -31,22 +31,26 @@ export const Verification = (props) => {
         return state.tokenReducer
     })
     const gotoNewPass = () => {
-        navigation.navigate('NewPass', { updatePass: false })
+        console.log(email)
+        // navigation.navigate('NewPass', { updatePass: false })
     }
 
     const gotoConnect = () => {
-
-        navigation.dispatch(
-            CommonActions.reset({
-                index: 0,
-                routes: [{ name: "ConnectWith" }],
-            })
-        );
+        if (params?.name == 'signup') {
+            navigation.dispatch(
+                CommonActions.reset({
+                    index: 0,
+                    routes: [{ name: "ConnectWith" }],
+                })
+            );
+        } else {
+            navigation.navigate('NewPass', { updatePass: false, email: email })
+        }
     }
 
     const startBarCount = () => {
         setResendDisable(true)
-        let arr = 0
+        let arr = -1
         barInterVal = setInterval(() => {
             // setBarCounter(arr + 1)
             arr = arr + 1
@@ -83,7 +87,8 @@ export const Verification = (props) => {
             "code": text
         }
         try {
-            await axios._postApi('/verifycode', params, selector.token).then(res => {
+            await axios._postApi('/verifycode', params).then(res => {
+                console.log(res)
                 if (res.status == 200) {
                     if (res.data['error']) {
                         setBorderColor('red')
@@ -127,13 +132,7 @@ export const Verification = (props) => {
         console.log(e.length)
         if (e.length == 4) {
             console.log(e.length, 'sads')
-            if (params?.name == 'signup') {
-                // gotoConnect()
-                verifyCode(e)
-            } else {
-                gotoNewPass()
-            }
-
+            verifyCode(e)
         }
     }
 

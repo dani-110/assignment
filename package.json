@@ -45,7 +45,8 @@
     "react-redux": "^8.0.2",
     "redux": "^4.2.0",
     "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.4.1"
+    "redux-thunk": "^2.4.1",
+    "twilio": "^3.80.1"
   },
   "devDependencies": {
     "@babel/core": "^7.18.2",

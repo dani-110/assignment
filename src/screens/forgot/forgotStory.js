@@ -17,7 +17,8 @@ export const ForgotStory = (props) => {
     const {
         email,
         getEmail,
-        gotoVerification
+        gotoVerification,
+        forgot
     } = props
 
     const inputs = () => (
@@ -44,7 +45,7 @@ export const ForgotStory = (props) => {
                     {inputs()}
                 </View>
                 <View style={{ flex: 1, alignItems: 'center', paddingTop: hp('4%') }}>
-                    <DoneButton func={gotoVerification} text={'PROCEED'} colors={['#9C00FF', '#9C00FF']} style={{ width: '50%' }} />
+                    <DoneButton func={forgot} text={'PROCEED'} colors={['#9C00FF', '#9C00FF']} style={{ width: '50%' }} />
                 </View>
             </View>
         </BkcView>

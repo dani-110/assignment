@@ -9,42 +9,42 @@ import { Colors } from '../../../constants/colors';
 import { SmsStack } from './smsStack';
 import { DrawerStack } from './drawerStack'
 import { Button } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux'
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-export default class Routes extends Component {
-    render() {
-        return (
-            <NavigationContainer>
-                {/* <Tab.Navigator>
-                    <Tab.Screen name={'Movies'} component={Movies} options={{ headerShown: false }} />
-                    <Tab.Screen name={'Favorite'} component={Favorite} options={{ headerShown: false }} />
-                </Tab.Navigator> */}
-                <Stack.Navigator initialRouteName={'AuthStack'} screenOptions={{
-                    // drawerStyle: { width: '80%' }
-                    headerStyle: {
-                        backgroundColor: Colors.headerBase,
-                    },
-                    headerShown: false,
-                    animation: 'slide_from_right',
-                    headerBackTitleVisible: false,
-                }}>
-                    <Stack.Screen name={'AuthStack'} component={AuthStack} options={{ headerShown: false }} />
-                    <Stack.Screen name={'ForgotStack'} component={ForgotStack} options={{ headerShown: false }} />
-                    <Stack.Screen name={'DashboardStack'} component={DrawerStack} options={{ headerShown: false }} />
-                    <Stack.Screen name={'CallLogs'} component={CallLogs} options={{
-                        title: 'Calling History',
-                        headerShown: true,
-                        headerTitleAlign: 'center'
-                    }} />
-                    <Stack.Screen name={'Conversation'} component={SmsStack} />
-                    <Stack.Screen name={'Dialer'} component={Dialer} options={{
-                        headerShown: true,
-                        headerTitleAlign: 'center'
-                    }} />
-                </Stack.Navigator>
-            </NavigationContainer>
-        )
-    }
+export const Routes = () => {
+    const selector = useSelector((state) => {
+        return state.UserReducer
+    })
+    console.log(selector)
+
+    return (
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName={selector.isLogin ? 'DashboardStack' : 'AuthStack'} screenOptions={{
+                headerStyle: {
+                    backgroundColor: Colors.headerBase,
+                },
+                headerShown: false,
+                animation: 'slide_from_right',
+                headerBackTitleVisible: false,
+            }}>
+                <Stack.Screen name={'AuthStack'} component={AuthStack} options={{ headerShown: false }} />
+                <Stack.Screen name={'ForgotStack'} component={ForgotStack} options={{ headerShown: false }} />
+                <Stack.Screen name={'DashboardStack'} component={DrawerStack} options={{ headerShown: false }} />
+                <Stack.Screen name={'CallLogs'} component={CallLogs} options={{
+                    title: 'Calling History',
+                    headerShown: true,
+                    headerTitleAlign: 'center'
+                }} />
+                <Stack.Screen name={'Conversation'} component={SmsStack} />
+                <Stack.Screen name={'Dialer'} component={Dialer} options={{
+                    headerShown: true,
+                    headerTitleAlign: 'center'
+                }} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    )
+
 }

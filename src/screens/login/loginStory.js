@@ -10,6 +10,7 @@ import { styles } from './login.styles';
 import { Constent } from '../../constants/AppStyles'
 import { Colors } from '../../constants/colors';
 import { BkcView } from '../../shared/components/BkcView/bkcView';
+import MessageBar from '../../shared/components/MessageBar';
 
 export const LoginStory = (props) => {
     const {
@@ -23,7 +24,8 @@ export const LoginStory = (props) => {
         getSelected,
         gotoSignUp,
         gotoForgot,
-        gotoDashboard
+        gotoDashboard,
+        login
     } = props
     const renderIcon = (props) => (
         <TouchableWithoutFeedback onPress={toggleSecureEntry}>
@@ -85,8 +87,8 @@ export const LoginStory = (props) => {
                         <CardHeader text={'USER LOGIN'} style={styles.cardHeader} />
                         <View style={{ ...Constent.insideCenter }}>
                             {inputs()}
-                            {checkBox()}
-                            <DoneButton func={gotoDashboard} text={'LOGIN'} colors={Colors.btnColor} style={{ width: '70%' }} />
+                            {/* {checkBox()} */}
+                            <DoneButton func={login} text={'LOGIN'} colors={Colors.btnColor} style={{ width: '70%' }} />
                             {forgotPass()}
                             {goToSignUp()}
                         </View>
@@ -94,6 +96,7 @@ export const LoginStory = (props) => {
                 </View >
                 {/* </View > */}
             </BkcView>
+            <MessageBar />
         </KeyboardAvoidingView>
     )
 }

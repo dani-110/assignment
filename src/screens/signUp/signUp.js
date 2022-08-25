@@ -11,13 +11,13 @@ export const SignUp = (props) => {
     const {
         navigation
     } = props
-    const [firstName, setFirstName] = useState("daniyal");
-    const [lastName, setLastName] = useState("hussain");
-    const [email, setEmail] = useState("daniyal@gmail.com");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
     const [company, setCompany] = useState("");
     const [domain, setDomain] = useState("");
-    const [password, setPassword] = useState("123456789a");
-    const [confirmPassword, setConfirmPassword] = useState("123456789a");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [isSelected, setIsSelected] = useState(false);
     const [secureTextEntry1, setSecureTextEntry1] = useState(true);
     const [secureTextEntry2, setSecureTextEntry2] = useState(true);
@@ -65,16 +65,16 @@ export const SignUp = (props) => {
             Util.topAlertError("Password is empty")
             return false
         } else if (password.length < 8) {
-            Util.topAlertError("Password length must be 8")
+            Util.topAlertError("Password length must be atleast 8")
             return false
         } else if (!Util.isPasswordValid(password)) {
-            Util.topAlertError("Password must be contain alteast 1 letter and 1 numeric charecter")
+            Util.topAlertError("Password must contain alteast 1 letter and 1 number")
             return false
         } else if (_.isEmpty(confirmPassword)) {
             Util.topAlertError("Confirm Password is empty")
             return false
         } else if (password !== confirmPassword) {
-            Util.topAlertError("Password not match")
+            Util.topAlertError("Passwords don't match")
             return false
         } else if (!isSelected) {
             Util.topAlertError("Please accept terms and condition")
@@ -90,10 +90,12 @@ export const SignUp = (props) => {
         }
         try {
             await axios._postApi('/auth', params).then(res => {
+                console.log(res, 'sdsa')
                 if (res.status == 200) {
                     dispatch(tokenValue(res.data.token))
                 }
             })
+
         }
         catch (e) {
             console.log(e)
@@ -112,9 +114,9 @@ export const SignUp = (props) => {
                 "website": domain
             }
             try {
-                await axios._postApi('/register', params, selector.token).then(res => {
+                await axios._postApi('/signup', params).then(res => {
+                    console.log(res, 'response of resgister')
                     if (res.status == 200) {
-                        console.log(res, 'response of resgister')
                         gotoVerification()
                     } else {
                         Util.topAlertError(res.data.error)

@@ -10,15 +10,19 @@ export const styles = StyleSheet.create({
     },
     inputContainer: {
         width: '90%',
-        backgroundColor: Colors.headerBase,
-        padding: hp('0.5%'),
         minHeight: hp('6%'),
-        borderRadius: hp('2%'),
         flexDirection: 'row',
         marginBottom: hp('2%'),
+    },
+    input: {
+        flex: 1, justifyContent: 'center', paddingHorizontal: wp('4%'),
+        backgroundColor: Colors.headerBase,
+        marginRight: hp('0.5%'),
+        minHeight: hp('6%'),
+        borderRadius: hp('2%'),
+        padding: hp('0.5%'),
         paddingHorizontal: hp('1%')
     },
-    input: { flex: 1, justifyContent: 'center', paddingHorizontal: wp('4%') },
     send: { justifyContent: 'center', alignItems: 'center', height: hp('4%'), width: hp('4%'), borderRadius: hp('50%') },
     inputText: { minHeight: ('2%'), maxHeight: hp('8%') }
 })

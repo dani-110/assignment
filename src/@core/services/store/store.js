@@ -4,10 +4,12 @@ import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 import autoMergeLevel1 from 'redux-persist/lib/stateReconciler/autoMergeLevel1';
 import tokenReducer from './token/reducer';
+import UserReducer from './user/reducer'
 
 
 const rootReducer = combineReducers({
-    tokenReducer
+    tokenReducer,
+    UserReducer
 })
 
 const persistConfig = {
@@ -15,7 +17,7 @@ const persistConfig = {
     storage: AsyncStorage,
     stateReconciler: autoMergeLevel1,
     blackList: [],
-    whiteList: ['tokenReducer']
+    whiteList: ['tokenReducer', 'UserReducer']
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(persistedReducer, applyMiddleware(thunk));

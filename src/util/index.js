@@ -21,6 +21,12 @@ class Util {
             alertType
         });
     }
+    topAlertSuccess(message, alertType = MESSAGE_TYPES.SUCCESS) {
+        MessageBarManager.showAlert({
+            message,
+            alertType
+        });
+    }
 }
 
 

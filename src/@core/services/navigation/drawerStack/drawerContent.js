@@ -9,6 +9,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import { DrawerHeader } from './drawerHeader';
 import { Constent } from '../../../../constants/AppStyles';
 import { CommonActions } from "@react-navigation/native";
+import { useDispatch, useSelector } from 'react-redux'
+import { UserValue } from '../../store';
 
 // create a component
 export const DrawerView = (props) => {
@@ -16,7 +18,12 @@ export const DrawerView = (props) => {
     const {
         navigation
     } = props
+    const dispatch = useDispatch()
     const gotoLogin = () => {
+        dispatch(UserValue({
+            user: {},
+            isLogin: false
+        }))
         navigation.dispatch(
             CommonActions.reset({
                 index: 0,

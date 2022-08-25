@@ -13,11 +13,13 @@ export function DoneButton(props) {
         func,
         style,
         colors,
-        textStyle
+        textStyle,
+        disabled,
     } = props
     return (
         <TouchableOpacity
             style={{ ...styles.btn, ...style }}
+            disabled={disabled}
             onPress={func}>
             <LinearGradient
                 start={{ x: 0, y: 0 }}
@@ -37,5 +39,6 @@ DoneButton.defaultProps = {
     text: "something special",
     status: "",
     func: () => null,
-    colors: ['#A0CC78', '#207561']
+    colors: ['#A0CC78', '#207561'],
+    disabled: false
 }
