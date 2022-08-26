@@ -4,9 +4,9 @@ import { Colors } from '../../constants/colors';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export const styles = StyleSheet.create({
-    firstView: { flex: 1, ...Constent.insideCenter },
+    firstView: { flex: 1, justifyContent: 'flex-end', alignItems: 'center' },
     secondView: { flex: 2, ...Constent.insideCenter, paddingVertical: hp('2%') },
-    input: { marginVertical: hp('1.5%'), width: '100%' },
+    input: { marginVertical: hp('1.5%'), width: '90%' },
     forgot: { color: '#fff', ...Constent.mainFont, fontWeight: '500' },
     forgotView: { marginVertical: hp('3%') },
     signUp: { color: '#9C01FF', ...Constent.mainFont, fontWeight: '500' },

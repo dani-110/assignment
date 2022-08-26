@@ -70,7 +70,7 @@ export const NewPass = (props) => {
                             Util.topAlertSuccess("Password reset successfull")
                             setTimeout(() => {
                                 navigation.navigate('Login')
-                            }, 2000)
+                            }, 4000)
 
                         }
                     }

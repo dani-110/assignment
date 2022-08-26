@@ -13,7 +13,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2F1B683D2E6C4A21B0F95414 /* libPods-DaniyalTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE2C78AF567CA043D0A9B24 /* libPods-DaniyalTest.a */; };
 		739049CE4A9B3AACB21A83A3 /* libPods-DaniyalTest-DaniyalTestTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADDBAF406D2AC84E7297A2BC /* libPods-DaniyalTest-DaniyalTestTests.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		FAD0F42628B7953D00E5B981 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD0F42528B7953D00E5B981 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,11 +39,11 @@
 		20034DF2F6F9A71BCB48DEB9 /* Pods-DaniyalTest-DaniyalTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DaniyalTest-DaniyalTestTests.debug.xcconfig"; path = "Target Support Files/Pods-DaniyalTest-DaniyalTestTests/Pods-DaniyalTest-DaniyalTestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		445E619414688278A38521CE /* Pods-DaniyalTest-DaniyalTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DaniyalTest-DaniyalTestTests.release.xcconfig"; path = "Target Support Files/Pods-DaniyalTest-DaniyalTestTests/Pods-DaniyalTest-DaniyalTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		4DEFEFF00F0DF856C3D47A1D /* Pods-DaniyalTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DaniyalTest.release.xcconfig"; path = "Target Support Files/Pods-DaniyalTest/Pods-DaniyalTest.release.xcconfig"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = DaniyalTest/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAE2C78AF567CA043D0A9B24 /* libPods-DaniyalTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DaniyalTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADDBAF406D2AC84E7297A2BC /* libPods-DaniyalTest-DaniyalTestTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DaniyalTest-DaniyalTestTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E71E490300B657F4C4F0A7C1 /* Pods-DaniyalTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DaniyalTest.debug.xcconfig"; path = "Target Support Files/Pods-DaniyalTest/Pods-DaniyalTest.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		FAD0F42528B7953D00E5B981 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +90,8 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				FAD0F42528B7953D00E5B981 /* Launch Screen.storyboard */,
 			);
 			name = DaniyalTest;
 			sourceTree = "<group>";
@@ -242,7 +242,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				FAD0F42628B7953D00E5B981 /* Launch Screen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,7 +483,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E71E490300B657F4C4F0A7C1 /* Pods-DaniyalTest.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
@@ -511,7 +510,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4DEFEFF00F0DF856C3D47A1D /* Pods-DaniyalTest.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				HEADER_SEARCH_PATHS = "$(inherited)";

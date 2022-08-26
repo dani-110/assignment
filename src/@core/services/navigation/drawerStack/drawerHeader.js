@@ -34,11 +34,12 @@ export const DrawerHeader = () => {
                 </View>
             </View>
             <Switch
-                trackColor={{ false: Colors.busy, true: Colors.availale }}
+                trackColor={{ false: Colors.busy, true: Colors.green }}
                 thumbColor={Colors.headerColor}
                 ios_backgroundColor={Colors.busy}
                 onValueChange={toggleSwitch}
                 value={isEnabled}
+                style={{ borderWidth: 3, borderColor: isEnabled ? Colors.availale : Colors.unread }}
             />
         </View>
     );

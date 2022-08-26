@@ -7,6 +7,8 @@ import _ from "lodash";
 import Util from '../../util';
 import { tokenValue, UserValue } from '../../@core/services/store';
 
+import jwt_decode from "jwt-decode";
+
 
 export const Login = (props) => {
     const {
@@ -27,9 +29,6 @@ export const Login = (props) => {
         setSecureTextEntry(!secureTextEntry);
     };
 
-    useEffect(() => {
-        getAuth()
-    }, [])
 
     const gotoSignUp = () => {
         navigation.navigate('SignUp')
@@ -82,19 +81,19 @@ export const Login = (props) => {
 
     const login = async () => {
         if (validateForm()) {
-            console.log(selector.token)
             const params = {
                 "email": email,
                 "password": password,
             }
             try {
-                await axios._postApi('/Verifypassword', params, selector.token).then(res => {
+                await axios._postApi('/login', params).then(res => {
                     console.log(res, 'response of resgister')
                     if (res.status == 200) {
                         dispatch(UserValue({
                             user: res.data,
                             isLogin: true
                         }))
+                        dispatch(tokenValue(res.data.token))
                         gotoDashboard()
                     } else {
                         Util.topAlertError(res.data['error'])

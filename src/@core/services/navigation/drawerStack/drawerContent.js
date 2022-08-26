@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, Switch } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { DrawerItem, DrawerContentScrollView, DrawerContent } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Colors } from '../../../../constants/colors';
@@ -11,6 +11,7 @@ import { Constent } from '../../../../constants/AppStyles';
 import { CommonActions } from "@react-navigation/native";
 import { useDispatch, useSelector } from 'react-redux'
 import { UserValue } from '../../store';
+import { Icons, Images } from '../../../../assets/assetsPath';
 
 // create a component
 export const DrawerView = (props) => {
@@ -40,7 +41,7 @@ export const DrawerView = (props) => {
                 <DrawerItem
                     icon={({ color, size }) => (
                         <Icon
-                            name='dashboard'
+                            name='grid-view'
                             color={Colors.headerColor}
                             size={30}
                         />
@@ -107,12 +108,7 @@ export const DrawerView = (props) => {
                     style={{ flex: 1, ...Constent.insideCenter }}
                 >
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Icon
-                            name='store'
-                            color={Colors.headerColor}
-                            size={50}
-                        />
-                        <Text style={styles.companyName}>Company Name</Text>
+                        <Image source={Images.logoWhite} style={{ height: 50, width: 100, resizeMode: 'contain' }} />
                     </View>
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }} >
                         <Text style={styles.privacy}>Privacy Policy</Text>

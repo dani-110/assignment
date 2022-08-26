@@ -43,6 +43,7 @@ export default class extends React.Component {
         stylesheetSuccess={success}
         stylesheetInfo={info}
         viewTopInset={Platform.OS === "ios" ? (isIphoneX() ? 50 : 20) : 0}
+        duration={4000}
       />
     );
   }

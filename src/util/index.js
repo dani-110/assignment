@@ -18,7 +18,7 @@ class Util {
     topAlertError(message, alertType = MESSAGE_TYPES.ERROR) {
         MessageBarManager.showAlert({
             message,
-            alertType
+            alertType,
         });
     }
     topAlertSuccess(message, alertType = MESSAGE_TYPES.SUCCESS) {

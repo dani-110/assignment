@@ -84,7 +84,7 @@ export const CallLogsStory = (props) => {
                 </View>
                 <View style={{ justifyContent: 'center' }}>
                     <Icon
-                        name={isActive ? 'arrow-drop-up' : 'arrow-drop-down'}
+                        name={isActive ? 'expand-less' : 'expand-more'}
                         size={25}
                     />
                 </View>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, SafeAreaView, Platform, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard } from 'react-native'
+import { View, Text, Image, SafeAreaView, Platform, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard } from 'react-native'
 import { Card } from '../../shared/components/Card/card';
 import { CardHeader } from '../../shared/components/CardHeader/cardHeader';
 import { DataInput } from '../../shared/components/DataInput/dataInput';
@@ -11,6 +11,7 @@ import { Constent } from '../../constants/AppStyles'
 import { Colors } from '../../constants/colors';
 import { BkcView } from '../../shared/components/BkcView/bkcView';
 import MessageBar from '../../shared/components/MessageBar';
+import { Images } from '../../assets/assetsPath';
 
 export const LoginStory = (props) => {
     const {
@@ -81,6 +82,7 @@ export const LoginStory = (props) => {
             {/* <View style={{ flex: 1 }}> */}
             <BkcView>
                 <View style={styles.firstView}>
+                    <Image source={Images.logoWhite} style={{ height: 150, width: 150, resizeMode: 'contain' }} />
                 </View>
                 <View style={styles.secondView}>
                     <Card style={styles.card}>
