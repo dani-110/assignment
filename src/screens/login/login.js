@@ -15,6 +15,8 @@ export const Login = (props) => {
         navigation
     } = props
 
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
     const [email, setEmail] = useState("daniyalhussain995@gmail.com");
     const [password, setPassword] = useState("123456789a");
     const [isSelected, setIsSelected] = useState(false);
@@ -87,7 +89,7 @@ export const Login = (props) => {
             }
             try {
                 await axios._postApi('/login', params).then(res => {
-                    console.log(res, 'response of resgister')
+                    console.log(res)
                     if (res.status == 200) {
                         dispatch(UserValue({
                             user: res.data,
@@ -96,7 +98,7 @@ export const Login = (props) => {
                         dispatch(tokenValue(res.data.token))
                         gotoDashboard()
                     } else {
-                        Util.topAlertError(res.data['error'])
+                        Util.topAlertError(res.data.error)
                     }
                 })
             }

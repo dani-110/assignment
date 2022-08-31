@@ -5,10 +5,13 @@ import {
     TextInput,
     Animated,
     TouchableWithoutFeedback,
-    Text
+    Text,
+    Platform
 } from 'react-native';
 import { styles } from './style';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Constent } from '../../../constants/AppStyles';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export class DataInput extends Component {
     state = {
@@ -36,7 +39,7 @@ export class DataInput extends Component {
             left: 0,
             top: this._animatedIsFocused.interpolate({
                 inputRange: [0, 1],
-                outputRange: [12, -20],
+                outputRange: [hp('1.5%'), -20],
             }),
             fontSize: this._animatedIsFocused.interpolate({
                 inputRange: [0, 10],
@@ -50,12 +53,13 @@ export class DataInput extends Component {
             marginHorizontal: 10,
             paddingHorizontal: 2,
             marginVertical: 0,
+            zIndex: 100
         };
         return (
             <>
                 {/* <Text style={{ width: '100%', color: 'red', textAlign: 'right', fontSize: 12 }}>{`*${this.props.error}`}</Text> */}
                 {/* !this.state.isFocused ? "#eae7e7" : "#362FBB" */}
-                <View style={{ paddingTop: 5, width: '100%', borderWidth: 1, borderRadius: 10, borderColor: 'transparent', marginBottom: 12, backgroundColor: this.props.backgroundColor }}>
+                <View style={{ width: '100%', borderRadius: 10, height: hp(Platform.OS == 'ios' ? '5%' : '6%'), borderColor: 'transparent', marginBottom: 12, backgroundColor: this.props.backgroundColor, ...Constent.insideCenter }}>
                     <Animated.Text style={labelStyle}>{this.props.placeholder}</Animated.Text>
                     {/* <Animated.Text style={[isFocused || value?.length > 0 ? onFocusStyle : onBlurStyle]}>{placeholder}</Animated.Text> */}
 
@@ -65,7 +69,7 @@ export class DataInput extends Component {
                             onChangeText={txt => this.props.onChang(txt)}
                             autoCapitalize='none'
                             value={this.props.value}
-                            style={{ ...this.props.heightStyle, ...this.props.style, flex: 1, height: 38, fontSize: 15, color: "#000", paddingHorizontal: 10, }}
+                            style={{ ...this.props.heightStyle, ...this.props.style, flex: 1, height: '100%', fontSize: 15, color: "#000", paddingHorizontal: 10, }}
                             onFocus={this.handleFocus}
                             onBlur={this.handleBlur}
                             numberOfLines={this.props.numberOfLines}
@@ -82,7 +86,7 @@ export class DataInput extends Component {
                                         name={this.props.secureTextEntry ? "visibility-off" : "visibility"}
                                         size={25}
                                         color={this.state.isFocused ? "#362FBB" : "#aaa"}
-                                        style={{ marginTop: 5, marginRight: 5 }}
+                                        style={{ marginTop: hp(Platform.OS == 'ios' ? '0.5%' : '1.5%'), marginRight: 5 }}
                                     />
                                 </TouchableWithoutFeedback>
                                 : null

@@ -61,6 +61,9 @@ export const SignUp = (props) => {
         } else if (!Util.isEmailValid(email)) {
             Util.topAlertError("Email is not in correct format")
             return false
+        } else if (domain.length > 0 && !Util.isWebSiteValid(domain)) {
+            Util.topAlertError("Website is not in correct format")
+            return false
         } else if (_.isEmpty(password)) {
             Util.topAlertError("Password is empty")
             return false
@@ -104,7 +107,6 @@ export const SignUp = (props) => {
     }
     const signUp = async () => {
         if (validateForm()) {
-            console.log(selector.token)
             const params = {
                 "email": email,
                 "password": password,

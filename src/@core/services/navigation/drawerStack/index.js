@@ -7,6 +7,7 @@ import { Dashboard, Packages, Settings, UserManagement } from '../../../../scree
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DrawerView } from './drawerContent';
 import { Colors } from '../../../../constants/colors';
+import { Icons } from '../../../../assets/assetsPath';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -22,13 +23,18 @@ export const DrawerStack = (props) => {
                 // drawerStyle: { width: '80%' }
                 headerStyle: {
                     backgroundColor: Colors.headerBase,
-                }
+                },
+                headerLeftContainerStyle: { color: '#000' }
             }}
             drawerContent={props => <DrawerView {...props} />}
             initialRouteName="Dashboard">
             <Drawer.Screen name="DashboardStack" component={Dashboard} options={{
                 title: 'Dashboard',
-                headerTitleAlign: 'center'
+                headerTitleAlign: 'center',
+                drawerIcon: () => (
+                    <Icons.Setting width={20} height={20} fill={"#000"} />
+                ),
+
             }} />
             <Drawer.Screen name="Settings" component={Settings} />
             <Drawer.Screen name="UserManagement" component={UserManagement} />

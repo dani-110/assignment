@@ -19,6 +19,8 @@ export const DrawerView = (props) => {
     const {
         navigation
     } = props
+
+    const iconSize = 22
     const dispatch = useDispatch()
     const gotoLogin = () => {
         dispatch(UserValue({
@@ -40,11 +42,7 @@ export const DrawerView = (props) => {
 
                 <DrawerItem
                     icon={({ color, size }) => (
-                        <Icon
-                            name='grid-view'
-                            color={Colors.headerColor}
-                            size={30}
-                        />
+                        <Icons.Stats width={iconSize} height={iconSize} fill={"#fff"} />
                     )}
                     label='Dashboard'
                     labelStyle={styles.label}
@@ -52,11 +50,7 @@ export const DrawerView = (props) => {
                 />
                 <DrawerItem
                     icon={({ color, size }) => (
-                        <Icon
-                            name='settings'
-                            color={Colors.headerColor}
-                            size={30}
-                        />
+                        <Icons.Setting width={iconSize} height={iconSize} fill={"#fff"} />
                     )}
                     label='Settings'
                     labelStyle={styles.label}
@@ -64,11 +58,7 @@ export const DrawerView = (props) => {
                 />
                 <DrawerItem
                     icon={({ color, size }) => (
-                        <Icon
-                            name='person'
-                            color={Colors.headerColor}
-                            size={30}
-                        />
+                        <Icons.Users width={iconSize} height={iconSize} fill={"#fff"} />
                     )}
                     label='Users'
                     labelStyle={styles.label}
@@ -76,11 +66,7 @@ export const DrawerView = (props) => {
                 />
                 <DrawerItem
                     icon={({ color, size }) => (
-                        <Icon
-                            name='shopping-cart'
-                            color={Colors.headerColor}
-                            size={30}
-                        />
+                        <Icons.Subscribe width={iconSize} height={iconSize} fill={"#fff"} />
                     )}
                     label='Subscription'
                     labelStyle={styles.label}
@@ -88,11 +74,7 @@ export const DrawerView = (props) => {
                 />
                 <DrawerItem
                     icon={({ color, size }) => (
-                        <Icon
-                            name='logout'
-                            color={Colors.headerColor}
-                            size={30}
-                        />
+                        <Icons.SignOut width={iconSize} height={iconSize} fill={"#fff"} />
                     )}
                     label='Logout'
                     labelStyle={styles.label}

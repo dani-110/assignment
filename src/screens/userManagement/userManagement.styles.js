@@ -8,6 +8,6 @@ export const styles = StyleSheet.create({
     optionView: { backgroundColor: Colors.purple, ...Constent.insideCenter, width: wp('18%'), borderRadius: hp('2%'), marginHorizontal: hp('0.5%') },
     optionText: { color: Colors.headerColor, fontSize: hp('1.8%'), fontWeight: '500', textAlign: 'center' },
     mainView: { backgroundColor: Colors.headerBase, padding: hp('1%'), borderRadius: hp('1%'), flexDirection: 'row', marginVertical: hp('0.5%') },
-    contentText: { fontSize: hp('2%'), marginVertical: hp('0.5%') },
+    contentText: { fontSize: hp('2%'), marginVertical: hp('0.5%'), fontWeight: '600', color: '#000' },
     input: { marginVertical: hp('1%'), width: '100%' },
 })

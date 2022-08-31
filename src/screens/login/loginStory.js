@@ -79,24 +79,26 @@ export const LoginStory = (props) => {
 
     return (
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
-            {/* <View style={{ flex: 1 }}> */}
             <BkcView>
-                <View style={styles.firstView}>
-                    <Image source={Images.logoWhite} style={{ height: 150, width: 150, resizeMode: 'contain' }} />
-                </View>
-                <View style={styles.secondView}>
-                    <Card style={styles.card}>
-                        <CardHeader text={'USER LOGIN'} style={styles.cardHeader} />
-                        <View style={{ ...Constent.insideCenter }}>
-                            {inputs()}
-                            {/* {checkBox()} */}
-                            <DoneButton func={login} text={'LOGIN'} colors={Colors.btnColor} style={{ width: '70%' }} />
-                            {forgotPass()}
-                            {goToSignUp()}
+                <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                    <View style={{ flex: 1 }}>
+                        <View style={styles.firstView}>
+                            <Image source={Images.logoWhite} style={{ height: 150, width: 150, resizeMode: 'contain' }} />
                         </View>
-                    </Card>
-                </View >
-                {/* </View > */}
+                        <View style={styles.secondView}>
+                            <Card style={styles.card}>
+                                <CardHeader text={'USER LOGIN'} style={styles.cardHeader} />
+                                <View style={{ ...Constent.insideCenter }}>
+                                    {inputs()}
+                                    {/* {checkBox()} */}
+                                    <DoneButton func={login} text={'LOGIN'} colors={Colors.btnColor} style={{ width: '70%' }} />
+                                    {forgotPass()}
+                                    {goToSignUp()}
+                                </View>
+                            </Card>
+                        </View >
+                    </View>
+                </TouchableWithoutFeedback>
             </BkcView>
             <MessageBar />
         </KeyboardAvoidingView>

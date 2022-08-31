@@ -12,6 +12,7 @@ import { Colors } from '../../constants/colors';
 import { BkcView } from '../../shared/components/BkcView/bkcView';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Circle } from '../../shared/components/Circle/circle';
+import MessageBar from '../../shared/components/MessageBar';
 
 export const ForgotStory = (props) => {
     const {
@@ -30,24 +31,29 @@ export const ForgotStory = (props) => {
     )
     return (
         <BkcView >
-            <View style={styles.main}>
-                <View style={{ flex: 1, justifyContent: 'center' }}>
-                    <CardHeader text={'RESET PASSWORD'} style={styles.cardHeader} textStyle={{ fontSize: hp('4%') }} />
-                    <View style={{ flexDirection: 'row', justifyContent: 'center', position: 'absolute', bottom: 0, width: '100%' }}>
-                        <Circle style={{ ...Constent.counterCircle, backgroundColor: Colors.unread, marginHorizontal: 20 }} textStyle={{ color: '#fff' }} text={1} />
-                        <Circle style={{ ...Constent.counterCircle, backgroundColor: '#fff', marginHorizontal: 20 }} text={2} />
-                        <Circle style={{ ...Constent.counterCircle, backgroundColor: '#fff', marginHorizontal: 20 }} text={3} />
-                    </View>
-                </View>
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                <View style={styles.main}>
+                    <View style={{ flex: 1, justifyContent: 'center' }}>
+                        <CardHeader text={'RESET PASSWORD'} style={styles.cardHeader} textStyle={{ fontSize: hp('4%') }} />
+                        <View style={{ flexDirection: 'row', justifyContent: 'center', width: '100%', marginTop: hp('5%') }}>
+                            <Circle style={{ ...Constent.counterCircle, backgroundColor: Colors.unread, marginHorizontal: 20 }} textStyle={{ color: '#fff' }} text={1} />
+                            <Circle style={{ ...Constent.counterCircle, backgroundColor: '#fff', marginHorizontal: 20 }} text={2} />
+                            <Circle style={{ ...Constent.counterCircle, backgroundColor: '#fff', marginHorizontal: 20 }} text={3} />
+                        </View>
+                        <Text style={{ ...Constent.desc, marginTop: hp('5%') }}>{"Please enter your\n email address"}</Text>
+                    </View >
+                    <View style={{ flex: 1 }}>
+                        <View style={{ flex: 1, alignItems: 'center' }}>
+                            {inputs()}
+                        </View>
+                        <View style={{ flex: 1, alignItems: 'center', }}>
+                            <DoneButton func={forgot} text={'PROCEED'} colors={['#9C00FF', '#9C00FF']} style={{ width: hp('20%') }} />
+                        </View>
 
-                <View style={{ flex: 1, justifyContent: 'space-around' }}>
-                    <Text style={Constent.desc}>{"Please enter your\n email address"}</Text>
-                    {inputs()}
+                    </View >
                 </View>
-                <View style={{ flex: 1, alignItems: 'center', paddingTop: hp('4%') }}>
-                    <DoneButton func={forgot} text={'PROCEED'} colors={['#9C00FF', '#9C00FF']} style={{ width: '50%' }} />
-                </View>
-            </View>
+            </TouchableWithoutFeedback>
+            <MessageBar />
         </BkcView>
     )
 }

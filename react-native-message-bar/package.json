@@ -1,0 +1,37 @@
+{
+  "name": "react-native-message-bar",
+  "version": "2.1.0",
+  "description": "A message bar alert displayed at the top of the screen for react-native",
+  "main": "index.js",
+  "private": false,
+  "author": "talor Anderson <ta.anders17@gmail.com> (https://github.com/talor-a)",
+  "scripts": {
+    "start": "react-native start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Talor-A/react-native-message-bar.git"
+  },
+  "keywords": [
+    "react-native",
+    "react",
+    "native",
+    "message",
+    "bar",
+    "alert",
+    "notification",
+    "status"
+  ],
+  "files": [
+    "package.json",
+    "README.md",
+    "index.js",
+    "MessageBar.js",
+    "MessageBarManager.js",
+    "LICENSE"
+  ],
+  "bugs": {
+    "url": "https://github.com/Talor-A/react-native-message-bar/issues"
+  },
+  "license": "MIT"
+}

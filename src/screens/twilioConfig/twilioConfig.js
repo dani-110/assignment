@@ -9,7 +9,7 @@ export const TwilioConfig = (props) => {
         navigation
     } = props
     const [ssid, setSsid] = useState("");
-    const [authToken, setAuthToken] = useState();
+    const [authToken, setAuthToken] = useState('');
 
     useState(() => {
     }, [])

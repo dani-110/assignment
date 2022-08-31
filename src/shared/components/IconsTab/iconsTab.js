@@ -1,10 +1,10 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Colors } from '../../../constants/colors';
 import { styles } from './style';
-
+import { Icons } from '../../../assets/assetsPath';
 // create a component
 export function IconTab(props) {
     const {
@@ -23,11 +23,7 @@ export function IconTab(props) {
     return (
         <View style={styles.iconsView}>
             <TouchableOpacity onPress={gotoCallLogs}>
-                <Icon
-                    name='call'
-                    color={Colors.black}
-                    size={30}
-                />
+                <Icons.PhoneCall width={30} height={30} fill={"#000"} />
             </TouchableOpacity>
             <TouchableOpacity onPress={gotoDialer}>
                 <Icon
@@ -37,11 +33,7 @@ export function IconTab(props) {
                 />
             </TouchableOpacity>
             <TouchableOpacity onPress={gotoMsgLogs}>
-                <Icon
-                    name='email'
-                    color={Colors.black}
-                    size={30}
-                />
+                <Icons.Message width={30} height={30} fill={"#000"} />
             </TouchableOpacity>
         </View>
     );

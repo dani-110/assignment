@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, SafeAreaView, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, SafeAreaView, Dimensions, KeyboardAvoidingView, TextInput } from 'react-native';
 import { Colors } from '../../constants/colors';
 import { DataInput } from '../../shared/components/DataInput/dataInput';
 import { styles } from './settings.styles';
@@ -97,7 +97,7 @@ export const SettingsStory = (props) => {
         <>
             <View style={styles.input}>
                 <DataInput
-                    placeholder={'SSID'}
+                    placeholder={'SID'}
                     value={ssid}
                     onChang={getSsid}
                     selectedTextColor={Colors.purple}
@@ -201,18 +201,20 @@ export const SettingsStory = (props) => {
     )
     return (
         <SafeAreaView style={styles.main}>
-            <ScrollView style={{ paddingHorizontal: 30 }}>
-                {header('Account Info')}
-                {input()}
-                {header('Twilio Settings')}
-                {twilioView()}
-                {header('Password')}
-                {passView()}
-                {dialogView()}
-                <View style={{ flex: 1, paddingVertical: 30, ...Constent.insideCenter }}>
-                    <DoneButton text={'Save'} colors={['#9C00FF', '#9C00FF']} style={{ width: '50%' }} />
-                </View>
-            </ScrollView>
+            <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
+                <ScrollView style={{ paddingHorizontal: 30 }}>
+                    {header('Account Info')}
+                    {input()}
+                    {header('Twilio Settings')}
+                    {twilioView()}
+                    {header('Password')}
+                    {passView()}
+                    {dialogView()}
+                    <View style={{ flex: 1, paddingVertical: 30, ...Constent.insideCenter }}>
+                        <DoneButton text={'Save'} colors={['#9C00FF', '#9C00FF']} style={{ width: '50%' }} />
+                    </View>
+                </ScrollView>
+            </KeyboardAvoidingView>
         </SafeAreaView>
     );
 };

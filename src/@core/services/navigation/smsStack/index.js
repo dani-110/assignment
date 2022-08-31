@@ -6,6 +6,7 @@ import { Verification, NewPass, Conversation, Chat } from '../../../../screens';
 import { Platform, Text, TouchableOpacity } from 'react-native';
 import { Colors } from '../../../../constants/colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Icons } from '../../../../assets/assetsPath';
 
 
 const Stack = createNativeStackNavigator();
@@ -48,11 +49,7 @@ export const SmsStack = (props) => {
                     <TouchableOpacity
                         onPress={() => props.navigation.navigate('Chat', { new: true })}
                     >
-                        <Icon
-                            name='add'
-                            size={25}
-                            color={'#0074cc'}
-                        />
+                        <Icons.Plus width={20} height={20} fill={"#000"} />
                     </TouchableOpacity>
                 )
             }} />
@@ -63,11 +60,7 @@ export const SmsStack = (props) => {
 
                         style={{ flexDirection: "row", alignItems: 'center' }}
                     >
-                        <Icon
-                            name={'info-outline'}
-                            size={25}
-                            color={'#000'}
-                        />
+                        <Icons.Info width={20} height={20} fill={"#000"} />
 
                     </TouchableOpacity>
                 )

@@ -1,7 +1,6 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { styles } from './style';
 import LinearGradient from 'react-native-linear-gradient';
 import { Colors } from '../../../constants/colors';
 // create a component

@@ -8,8 +8,13 @@ export const TwilioConfigNum = (props) => {
     const {
         navigation
     } = props
-    const [ssid, setSsid] = useState("");
-    const [authToken, setAuthToken] = useState("");
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(null);
+    const [items, setItems] = useState([
+        { label: '+923462231079', value: '+923462231079' },
+        { label: '+923422371239', value: '+923422371239' }
+    ]);
+
     const gotoDashboard = () => {
         navigation.dispatch(
             CommonActions.reset({
@@ -20,10 +25,12 @@ export const TwilioConfigNum = (props) => {
     }
     return (
         <TwilioConfigNumStory
-            ssid={ssid}
-            setSsid={(e) => setSsid(e)}
-            authToken={authToken}
-            setAuthToken={(e) => setAuthToken(e)}
+            open={open}
+            setOpen={setOpen}
+            value={value}
+            setValue={setValue}
+            items={items}
+            setItems={setItems}
             gotoDashboard={gotoDashboard}
         />
     )

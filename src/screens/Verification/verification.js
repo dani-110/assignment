@@ -5,6 +5,7 @@ import axios from '../../@core/services/utilsfunctions'
 import { Colors } from '../../constants/colors';
 import Util from '../../util';
 import { CommonActions } from "@react-navigation/native";
+import { WebView } from 'react-native-webview';
 
 export const Verification = (props) => {
     const {
@@ -36,6 +37,7 @@ export const Verification = (props) => {
     }
 
     const gotoConnect = () => {
+        setBorderColor(Colors.green)
         if (params?.name == 'signup') {
             navigation.dispatch(
                 CommonActions.reset({
@@ -43,7 +45,8 @@ export const Verification = (props) => {
                     routes: [{ name: "ConnectWith" }],
                 })
             );
-        } else {
+        }
+        if (params?.name == 'forgot') {
             navigation.navigate('NewPass', { updatePass: false, email: email })
         }
     }
@@ -81,7 +84,6 @@ export const Verification = (props) => {
     }
 
     const verifyCode = async (text) => {
-        console.log('sads', selector.token)
         const params = {
             "email": email,
             "code": text
@@ -90,7 +92,7 @@ export const Verification = (props) => {
             await axios._postApi('/verifycode', params).then(res => {
                 console.log(res)
                 if (res.status == 200) {
-                    if (res.data['error']) {
+                    if (res?.data?.error) {
                         setBorderColor('red')
                         if (res.data['error'] == "bad code.") {
                             Util.topAlertError("Invalid Code.")
@@ -99,9 +101,7 @@ export const Verification = (props) => {
                             startCounter()
                             setCounterDisable(false)
                         }
-
                     } else {
-                        setBorderColor(Colors.green)
                         gotoConnect()
                     }
                 }
@@ -115,7 +115,7 @@ export const Verification = (props) => {
 
     const codeResend = async () => {
         try {
-            await axios._postApi('/resetcode', params, selector.token).then(res => {
+            await axios._postApi('/resetcode', params).then(res => {
                 console.log(res, 'reset code')
                 if (res.status = 200) {
                     startBarCount()
@@ -133,6 +133,7 @@ export const Verification = (props) => {
         if (e.length == 4) {
             console.log(e.length, 'sads')
             verifyCode(e)
+            // gotoConnect()
         }
     }
 
@@ -149,5 +150,9 @@ export const Verification = (props) => {
             editable={editable}
             codeResend={codeResend}
         />
+        // <WebView
+        //     source={{ html: '<iframe width="100%" height="50%" src="https://www.youtube.com/embed/cqyziA30whE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' }}
+        //     style={{ marginTop: 20 }}
+        // />
     )
 }

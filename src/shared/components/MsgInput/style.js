@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     },
     input: {
         flex: 1, justifyContent: 'center', paddingHorizontal: wp('4%'),
-        backgroundColor: Colors.headerBase,
+        backgroundColor: '#fff',
         marginRight: hp('0.5%'),
         minHeight: hp('6%'),
         borderRadius: hp('2%'),

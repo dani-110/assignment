@@ -12,53 +12,76 @@ import { Colors } from '../../constants/colors';
 import { VerifyCode } from '../../shared/components/verifyCode/verifyCode';
 import { BkcView } from '../../shared/components/BkcView/bkcView';
 import { Circle } from '../../shared/components/Circle/circle';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import MessageBar from '../../shared/components/MessageBar';
+import DropDownPicker from 'react-native-dropdown-picker';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export const TwilioConfigNumStory = (props) => {
     const {
-        ssid,
-        setSsid,
-        authToken,
-        setAuthToken,
+        open,
+        setOpen,
+        value,
+        setValue,
+        items,
+        setItems,
         gotoDashboard
     } = props
 
     const inputs = () => (
         <>
-            <View style={styles.input}>
-                <DataInput placeholder={"Phone Number"} value={ssid} onChang={setSsid} />
+            <View style={styles.barView}>
+                <DropDownPicker
+                    style={{ borderWidth: 0 }}
+                    open={open}
+                    value={value}
+                    items={items}
+                    setOpen={setOpen}
+                    setValue={setValue}
+                    setItems={setItems}
+                    placeholder={'Phone Number'}
+                    dropDownContainerStyle={{ borderWidth: 0, marginTop: 5 }}
+                    TickIconComponent={() => <View style={styles.check}>
+                        <Icon
+                            name={'done'}
+                            size={12}
+                            color={Colors.purple}
+                        />
+                    </View>}
+                />
             </View>
         </>
     )
     return (
-        <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
-            <BkcView>
-                <View style={{ flex: 1, justifyContent: 'space-around' }}>
-                    <View style={{ flex: 1, ...Constent.insideCenter }}>
-                        <Text style={{ fontSize: 30, color: Colors.headerColor, fontWeight: '500', textAlign: 'center' }}>{'TWILIO\nConfiguration'}</Text>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', position: 'absolute', bottom: 0, width: '100%' }}>
-                            <Circle style={{ ...Constent.counterCircle, backgroundColor: Colors.green, marginHorizontal: 20 }} textStyle={{ color: '#fff' }} text={1} />
-                            <Circle style={{ ...Constent.counterCircle, backgroundColor: Colors.unread, marginHorizontal: 20 }} textStyle={{ color: '#fff' }} text={2} />
-                        </View>
-                    </View>
-                    <View style={{ flex: 1, ...Constent.insideCenter }}>
-                        <Text style={{ textAlign: 'center', color: Colors.headerColor, fontSize: 25, fontWeight: '300', marginBottom: 10 }}>{"Select the Phone Number\n you want to use"}</Text>
 
-                        <View style={{ width: '80%' }}>
-                            {inputs()}
+        <BkcView >
+            <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
+                <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                    <View style={styles.main}>
+                        <View style={{ flex: 1, justifyContent: 'center' }}>
+                            <CardHeader text={'TWILIO\nConfiguration'} style={styles.cardHeader} textStyle={{ fontSize: hp('4%'), textAlign: 'center' }} />
+                            <View style={{ flexDirection: 'row', justifyContent: 'center', width: '100%', marginTop: hp('5%') }}>
+                                <Circle style={{ ...Constent.counterCircle, backgroundColor: Colors.green, marginHorizontal: wp('4%') }} textStyle={{ color: '#fff' }} text={1} />
+                                <Circle style={{ ...Constent.counterCircle, backgroundColor: Colors.unread, marginHorizontal: wp('4%') }} textStyle={{ color: '#fff' }} text={2} />
+                            </View>
+                            <Text style={{ ...Constent.desc, marginTop: hp('5%') }}>{"Select the Phone Number\n you want to use"}</Text>
                         </View>
-                    </View>
-                    <View style={{ flex: 1, alignItems: 'center' }}>
-                        <DoneButton func={gotoDashboard} text={'PROCEED'} colors={Colors.btnColor} style={{ width: '50%' }} />
-                        <View style={{ flex: 1, justifyContent: 'space-around', alignItems: 'center' }}>
+                        <View style={{ flex: 1, marginTop: hp('5%') }}>
 
-                            <Text style={{ textAlign: 'center', color: Colors.headerColor, fontSize: 15, fontWeight: '400', marginBottom: 10 }}>{"If you have multiple numbers,\n you may switch it later."}</Text>
-                            <TouchableOpacity>
-                                <Text></Text>
-                            </TouchableOpacity>
-                        </View>
+                            <View style={{ flex: 1, alignItems: 'center' }}>
+                                {inputs()}
+                            </View>
+                            <View style={{ flex: 1, alignItems: 'center', }}>
+                                <DoneButton func={gotoDashboard} text={'PROCEED'} colors={['#9C00FF', '#9C00FF']} style={{ width: hp('20%') }} />
+                                <Text style={styles.bottomDesc}>{"If you have multiple numbers,\n you may switch it later."}</Text>
+                            </View>
+
+                        </View >
                     </View>
-                </View>
-            </BkcView>
-        </KeyboardAvoidingView>
+                </TouchableWithoutFeedback>
+
+            </KeyboardAvoidingView>
+            <MessageBar />
+        </BkcView>
     )
 }

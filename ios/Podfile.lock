@@ -282,6 +282,8 @@ PODS:
     - RCTTypeSafety
     - React
     - ReactCommon/turbomodule/core
+  - react-native-webview (11.23.0):
+    - React-Core
   - React-perflogger (0.66.2)
   - React-RCTActionSheet (0.66.2):
     - React-Core/RCTActionSheetHeaders (= 0.66.2)
@@ -353,6 +355,8 @@ PODS:
     - React-Core
   - RNCCheckbox (0.5.12):
     - React-Core
+  - RNCPicker (2.4.4):
+    - React-Core
   - RNGestureHandler (2.5.0):
     - React-Core
   - RNReanimated (2.9.1):
@@ -385,6 +389,8 @@ PODS:
   - RNScreens (3.14.0):
     - React-Core
     - React-RCTImage
+  - RNSVG (13.0.0):
+    - React-Core
   - RNVectorIcons (9.2.0):
     - React-Core
   - Yoga (1.14.0)
@@ -435,6 +441,7 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-contacts (from `../node_modules/react-native-contacts`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-webview (from `../node_modules/react-native-webview`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -450,9 +457,11 @@ DEPENDENCIES:
   - RNAudioRecorderPlayer (from `../node_modules/react-native-audio-recorder-player`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - "RNCCheckbox (from `../node_modules/@react-native-community/checkbox`)"
+  - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -514,6 +523,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-contacts"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-webview:
+    :path: "../node_modules/react-native-webview"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTActionSheet:
@@ -544,12 +555,16 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/async-storage"
   RNCCheckbox:
     :path: "../node_modules/@react-native-community/checkbox"
+  RNCPicker:
+    :path: "../node_modules/@react-native-picker/picker"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -589,6 +604,7 @@ SPEC CHECKSUMS:
   React-logger: faee236598b0f7e1a5e3b68577016ac451f1f993
   react-native-contacts: 0aa99963d8f29099d4725cd0d2f8b6ef5f0d9a2d
   react-native-safe-area-context: 6c12e3859b6f27b25de4fee8201cfb858432d8de
+  react-native-webview: e771bc375f789ebfa02a26939a57dbc6fa897336
   React-perflogger: 5ab487cacfe6ec19bfe3d3f8072bf71eb07d63da
   React-RCTActionSheet: 03f25695e095fb5aa003828620943c74cc281fec
   React-RCTAnimation: eaf82da39f0c36fb0ef2a28df797c5f73a2a98ea
@@ -604,9 +620,11 @@ SPEC CHECKSUMS:
   RNAudioRecorderPlayer: 308940de4f9d1448a064874fd9d83479ae47c7a7
   RNCAsyncStorage: b03032fdbdb725bea0bd9e5ec5a7272865ae7398
   RNCCheckbox: ed1b4ca295475b41e7251ebae046360a703b6eb5
+  RNCPicker: 0b65be85fe7954fbb2062ef079e3d1cde252d888
   RNGestureHandler: bad495418bcbd3ab47017a38d93d290ebd406f50
   RNReanimated: 11e6e30bbc49079b7f0c321ac5830e6d113d0224
   RNScreens: 4830eb40e0793b38849965cd27f4f3a7d7bc65c1
+  RNSVG: 42a0c731b11179ebbd27a3eeeafa7201ebb476ff
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
   Yoga: 9a08effa851c1d8cc1647691895540bc168ea65f
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a

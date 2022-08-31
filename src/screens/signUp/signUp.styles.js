@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     signUp: { color: '#9C01FF', ...Constent.mainFont, fontWeight: '500' },
     signUpView: { flexDirection: 'row', marginVertical: hp('2%') },
     signUpText: { color: '#fff', ...Constent.mainFont },
-    checkBoxView: { marginBottom: hp('2%'), flexDirection: 'row', width: '100%', alignItems: 'center', paddingHorizontal: wp('1%') },
+    checkBoxView: { marginBottom: hp('2%'), flexDirection: 'row', width: '90%', alignItems: 'center', },
     checkBox: { alignSelf: 'center', marginRight: wp('3%') },
     card: { width: Dimensions.get('screen').width - 50, backgroundColor: Colors.black },
     cardHeader: { marginVertical: hp('2%') }

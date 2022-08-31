@@ -60,7 +60,7 @@ export const ChatStory = (props) => {
         }
     ]
     return (
-        <View style={{ flex: 1, padding: 10 }}>
+        <View style={{ flex: 1, padding: 10, backgroundColor: '#e9e4e400' }}>
             {/* <View style={{ flexDirection: 'row', borderBottomWidth: 1, padding: 10 }}>
                 <Text>To:</Text>
                 

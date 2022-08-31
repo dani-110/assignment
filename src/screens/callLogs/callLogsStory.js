@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, ScrollView, SafeAreaView, Platform, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard } from 'react-native'
+import React, { useEffect, useRef } from 'react';
+import { View, Text, Modal, SafeAreaView, Platform, TouchableOpacity, KeyboardAvoidingView, Keyboard } from 'react-native'
 import { styles } from './callLogs.styles'
 import { Constent } from '../../constants/AppStyles'
 import { Colors } from '../../constants/colors';
@@ -7,12 +7,22 @@ import Accordion from 'react-native-collapsible/Accordion';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Player } from '../../shared/components/Player/player';
+import { Icons } from '../../assets/assetsPath';
+import { Modalize } from 'react-native-modalize';
 
 export const CallLogsStory = (props) => {
     const {
         activeSections,
-        setActiveSections
+        setActiveSections,
+        modalizeRef,
+        onOpen,
+        onClose,
+        selector,
+        filterType,
+        isSelectedFilter,
+        setFilterCheck
     } = props
+
 
     const obj = [
         {
@@ -52,13 +62,18 @@ export const CallLogsStory = (props) => {
     const callStatus = (type) => {
         switch (type) {
             case 'missed':
-                return { name: 'phone-missed', color: '#FF5353' }
+                return <Icons.CallMissed width={15} height={15} fill={"#FF5353"} />
             case 'incoming':
-                return { name: 'phone-callback', color: '#00E577' }
+                return <Icons.CallIncoming width={15} height={15} fill={"#00E577"} />
             case 'outgoing':
-                return { name: 'phone-forwarded', color: '#FFD200' }
+                return <Icons.CallOutgoing width={15} height={15} fill={"#0639a0"} />
             case 'voicemail':
-                return { name: 'voicemail', color: '#2A2A2A' }
+                return <Icon
+                    name={'voicemail'}
+                    color={'#E1AD01'}
+                    size={20}
+
+                />
             default: return ""
         }
     }
@@ -70,12 +85,9 @@ export const CallLogsStory = (props) => {
                     <View>
                         <Text>{section.time}</Text>
                     </View>
-                    <Icon
-                        name={callStatus(section.type).name}
-                        color={callStatus(section.type).color}
-                        size={20}
-                        style={{ marginTop: hp('1%') }}
-                    />
+                    <View style={{ marginTop: hp('1%') }}>
+                        {callStatus(section.type)}
+                    </View>
                 </View>
                 <View style={{ flex: 1, padding: hp('1%') }}>
                     <Text style={{ fontSize: hp('2%') }}>{section.name}</Text>
@@ -103,20 +115,10 @@ export const CallLogsStory = (props) => {
                 <Player data={'https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3'} />
                 <View style={{ flexDirection: 'row', marginVertical: 10 }}>
                     <View style={styles.options}>
-                        <Icon
-                            name='call'
-                            size={25}
-                            style={{ marginRight: 10 }}
-                            color={Colors.purple}
-                        />
+                        <Icons.PhoneCall width={25} height={25} fill={Colors.purple} />
                     </View>
                     <View style={styles.options}>
-                        <Icon
-                            name='email'
-                            size={25}
-                            style={{ marginRight: 10 }}
-                            color={Colors.purple}
-                        />
+                        <Icons.Message width={25} height={25} fill={Colors.purple} />
                     </View>
                 </View>
             </View>
@@ -138,6 +140,26 @@ export const CallLogsStory = (props) => {
                 />
 
             </View>
+            <Modalize
+                scrollViewProps={{ showsVerticalScrollIndicator: false }}
+                handlePosition="inside"
+                withReactModal={true}
+                onOverlayPress={onClose}
+                onBackButtonPress={onClose}
+                modalHeight={hp('40%')}
+                ref={modalizeRef}
+                childrenStyle={{ flex: 1, ...Constent.insideCenter }}
+            >
+                <View style={{ flex: 1, margin: 50 }}>
+                    {
+                        filterType.map((item, i) => (
+                            <TouchableOpacity onPress={() => { setFilterCheck(i) }} style={{ margin: 10, borderWidth: 1, borderRadius: 10, padding: 5, borderColor: item == isSelectedFilter ? Colors.purple : '#000' }}>
+                                <Text style={{ fontSize: 15, textAlign: 'center', color: item == isSelectedFilter ? Colors.purple : '#000' }}>{item}</Text>
+                            </TouchableOpacity>
+                        ))
+                    }
+                </View>
+            </Modalize>
         </SafeAreaView>
     )
 }

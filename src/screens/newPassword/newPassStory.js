@@ -40,7 +40,7 @@ export const NewPassStory = (props) => {
     );
 
     const inputs = () => (
-        <View>
+        <>
             {
                 updatePass ?
                     <View style={styles.input}>
@@ -55,28 +55,36 @@ export const NewPassStory = (props) => {
             <View style={styles.input}>
                 <DataInput placeholder={"Confirm Password"} status={"Password"} value={confirmPassword} onChang={getConfirmPassword} toggleSecureEntry={toggleSecureEntry2} accessoryRight={() => renderIcon(toggleSecureEntry2)} secureTextEntry={secureTextEntry2} />
             </View>
-        </View>
+        </>
     )
     return (
         <BkcView >
-            <View style={styles.main}>
-                <View style={{ flex: 1, justifyContent: 'center' }}>
-                    <CardHeader text={'RESET PASSWORD'} style={styles.cardHeader} textStyle={{ fontSize: hp('4%') }} />
-                    <View style={styles.circleView}>
-                        <Circle style={{ ...Constent.counterCircle, backgroundColor: Colors.green, marginHorizontal: 20 }} textStyle={{ color: '#fff' }} text={1} />
-                        <Circle style={{ ...Constent.counterCircle, backgroundColor: Colors.green, marginHorizontal: 20 }} textStyle={{ color: '#fff' }} text={2} />
-                        <Circle style={{ ...Constent.counterCircle, backgroundColor: Colors.unread, marginHorizontal: 20 }} textStyle={{ color: '#fff' }} text={3} />
-                    </View>
-                    <Text style={Constent.desc}>{"Please setup your new password"}</Text>
+            <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
+                <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                    <View style={styles.main}>
+                        <View style={{ flex: 1, justifyContent: 'center' }}>
+                            <CardHeader text={'RESET PASSWORD'} style={styles.cardHeader} textStyle={{ fontSize: hp('4%') }} />
+                            <View style={{ flexDirection: 'row', justifyContent: 'center', width: '100%', marginTop: hp('5%') }}>
+                                <Circle style={{ ...Constent.counterCircle, backgroundColor: Colors.green, marginHorizontal: 20 }} textStyle={{ color: '#fff' }} text={1} />
+                                <Circle style={{ ...Constent.counterCircle, backgroundColor: Colors.green, marginHorizontal: 20 }} textStyle={{ color: '#fff' }} text={2} />
+                                <Circle style={{ ...Constent.counterCircle, backgroundColor: Colors.unread, marginHorizontal: 20 }} textStyle={{ color: '#fff' }} text={3} />
+                            </View>
+                            <Text style={{ ...Constent.desc, marginTop: hp('5%') }}>{"Please setup your new password"}</Text>
+                        </View>
+                        <View style={{ flex: 1 }}>
 
-                </View>
-                <View style={{ flex: 1 }}>
-                    {inputs()}
-                    <View style={{ alignItems: 'center', paddingTop: hp('5%') }}>
-                        <DoneButton disabled={saveDisable} func={resetPassword} text={'Save'} colors={['#9C00FF', '#9C00FF']} style={{ width: '50%' }} />
+                            <View style={{ flex: 1, alignItems: 'center' }}>
+                                {inputs()}
+                            </View>
+                            <View style={{ flex: 1, alignItems: 'center', }}>
+                                <DoneButton disabled={saveDisable} func={resetPassword} text={'Save'} colors={['#9C00FF', '#9C00FF']} style={{ width: hp('20%') }} />
+                            </View>
+
+                        </View >
                     </View>
-                </View>
-            </View>
+                </TouchableWithoutFeedback>
+
+            </KeyboardAvoidingView>
             <MessageBar />
         </BkcView>
     )

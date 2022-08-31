@@ -13,6 +13,7 @@ import { VerifyCode } from '../../shared/components/verifyCode/verifyCode';
 import { BkcView } from '../../shared/components/BkcView/bkcView';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Circle } from '../../shared/components/Circle/circle';
+import MessageBar from '../../shared/components/MessageBar';
 
 export const TwilioConfigStory = (props) => {
     const {
@@ -26,44 +27,41 @@ export const TwilioConfigStory = (props) => {
     const inputs = () => (
         <>
             <View style={styles.input}>
-                <DataInput placeholder={"SSID"} value={ssid} onChang={setSsid} />
+                <DataInput placeholder={"SSID"} value={ssid} onChang={setSsid} secureTextEntry={true} />
             </View>
             <View style={styles.input}>
-                <DataInput placeholder={"Auth Token"} value={authToken} onChang={setAuthToken} />
+                <DataInput placeholder={"Auth Token"} value={authToken} onChang={setAuthToken} secureTextEntry={true} />
             </View>
         </>
     )
     return (
-        <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
-            <BkcView>
-                <View style={{ flex: 1, justifyContent: 'space-around' }}>
-                    <View style={{ flex: 1, ...Constent.insideCenter }}>
-                        <Text style={{ fontSize: 30, color: Colors.headerColor, fontWeight: '500', textAlign: 'center' }}>{'TWILIO\nConfiguration'}</Text>
-
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', position: 'absolute', bottom: 0, width: '100%' }}>
-                            <Circle style={{ ...Constent.counterCircle, backgroundColor: Colors.unread, marginHorizontal: 20 }} textStyle={{ color: '#fff' }} text={1} />
-                            <Circle style={{ ...Constent.counterCircle, backgroundColor: '#fff', marginHorizontal: 20 }} text={2} />
+        <BkcView >
+            <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
+                <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                    <View style={styles.main}>
+                        <View style={{ flex: 1, justifyContent: 'center' }}>
+                            <CardHeader text={'TWILIO\nConfiguration'} style={styles.cardHeader} textStyle={{ fontSize: hp('4%'), textAlign: 'center' }} />
+                            <View style={{ flexDirection: 'row', justifyContent: 'center', width: '100%', marginTop: hp('5%') }}>
+                                <Circle style={{ ...Constent.counterCircle, backgroundColor: Colors.unread, marginHorizontal: 20 }} textStyle={{ color: '#fff' }} text={1} />
+                                <Circle style={{ ...Constent.counterCircle, backgroundColor: '#fff', marginHorizontal: 20 }} text={2} />
+                            </View>
+                            <Text style={{ ...Constent.desc, marginTop: hp('5%') }}>{"Please enter your\n Twilio account credentials"}</Text>
                         </View>
-                    </View>
-                    <View style={{ flex: 1, ...Constent.insideCenter }}>
-                        <Text style={{ textAlign: 'center', color: Colors.headerColor, fontSize: 25, fontWeight: '300', marginBottom: 10 }}>{"Please enter your\n Twilio account credentials"}</Text>
+                        <View style={{ flex: 1, marginTop: hp('5%') }}>
 
-                        <View style={{ width: '80%' }}>
-                            {inputs()}
-                        </View>
-                    </View>
-                    <View style={{ flex: 1, alignItems: 'center' }}>
-                        <DoneButton func={gotoTwilioConfigNum} text={'PROCEED'} colors={Colors.btnColor} style={{ width: '50%' }} />
-                        <View style={{ flex: 1, justifyContent: 'space-around', alignItems: 'center' }}>
+                            <View style={{ flex: 1, alignItems: 'center' }}>
+                                {inputs()}
+                            </View>
+                            <View style={{ flex: 1, alignItems: 'center', }}>
+                                <DoneButton func={gotoTwilioConfigNum} text={'PROCEED'} colors={['#9C00FF', '#9C00FF']} style={{ width: hp('20%') }} />
+                            </View>
 
-                            <Text style={{ textAlign: 'center', color: Colors.headerColor, fontSize: 15, fontWeight: '400', marginBottom: 10 }}>{"Can't find these credientials? "}<Text style={{ textDecorationLine: 'underline', fontSize: 15, color: Colors.headerColor, }}>Click Here</Text></Text>
-                            <TouchableOpacity>
-                                <Text></Text>
-                            </TouchableOpacity>
-                        </View>
+                        </View >
                     </View>
-                </View>
-            </BkcView>
-        </KeyboardAvoidingView>
+                </TouchableWithoutFeedback>
+
+            </KeyboardAvoidingView>
+            <MessageBar />
+        </BkcView>
     )
 }

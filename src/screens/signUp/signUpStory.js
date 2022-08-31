@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { View, Text, ScrollView, SafeAreaView, Platform, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard } from 'react-native'
 import { Card } from '../../shared/components/Card/card';
 import { CardHeader } from '../../shared/components/CardHeader/cardHeader';
@@ -11,6 +11,7 @@ import { Constent } from '../../constants/AppStyles'
 import { Colors } from '../../constants/colors';
 import { BkcView } from '../../shared/components/BkcView/bkcView';
 import MessageBar from '../../shared/components/MessageBar';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 export const SignUpStory = (props) => {
     const {
@@ -38,6 +39,9 @@ export const SignUpStory = (props) => {
         gotoVerification,
         signUp
     } = props
+
+    const scrollRef = useRef(confirmPassword)
+
     const renderIcon1 = (props) => (
         <TouchableWithoutFeedback onPress={toggleSecureEntry1}>
             <Icon {...props} name={secureTextEntry1 ? 'eye-off' : 'eye'} />
@@ -70,7 +74,7 @@ export const SignUpStory = (props) => {
                 <DataInput placeholder={"Password"} status={"Password"} value={password} onChang={getPassword} toggleSecureEntry={toggleSecureEntry1} accessoryRight={renderIcon1} secureTextEntry={secureTextEntry1} />
             </View>
             <View style={styles.input}>
-                <DataInput placeholder={"Confirm Password"} status={"Password"} value={confirmPassword} onChang={getConfirmPassword} toggleSecureEntry={toggleSecureEntry2} accessoryRight={renderIcon2} secureTextEntry={secureTextEntry2} />
+                <DataInput ref={scrollRef} placeholder={"Confirm Password"} status={"Password"} value={confirmPassword} onChang={getConfirmPassword} toggleSecureEntry={toggleSecureEntry2} accessoryRight={renderIcon2} secureTextEntry={secureTextEntry2} />
             </View>
         </>
     )
@@ -84,13 +88,13 @@ export const SignUpStory = (props) => {
                 }}
                 style={styles.checkBox}
                 boxType="square"
-                onTintColor="green"
+                onTintColor={Colors.green}
                 onCheckColor="white"
-                tintColors="green"
-                onFillColor="green"
+                tintColors={Colors.green}
+                onFillColor={Colors.green}
 
             />
-            <Text style={{ color: '#fff', }}>{'I accept the Terms & condition'}</Text>
+            <Text style={{ color: '#fff', }}>{'I accept the Privacy Policy'}</Text>
         </View>
     )
 
@@ -104,23 +108,28 @@ export const SignUpStory = (props) => {
     return (
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
             <BkcView>
-                {/* // <SafeAreaView style={{ flex: 1 }}> */}
-                {/* <View style={styles.firstView}>
-                </View> */}
-                <View style={styles.secondView}>
-                    <Card style={styles.card}>
-                        <CardHeader text={'SIGNUP'} style={styles.cardHeader} />
-                        <View style={{ ...Constent.insideCenter }}>
-                            {inputs()}
-                            {checkBox()}
-                            <DoneButton func={signUp} text={'SIGNUP'} colors={Colors.btnColor} style={{ width: '70%' }} />
-                            {goToLogin()}
-                        </View>
-                    </Card>
-                </View>
-                {/* // </SafeAreaView> */}
+                <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                    <View style={{ flex: 1, ...Constent.insideCenter, paddingTop: Platform.OS === "ios" ? hp('4%') : 0 }}>
+                        <ScrollView
+                            keyboardShouldPersistTaps='always'
+                            showsVerticalScrollIndicator={false}
+                        >
+                            <View style={styles.secondView}>
+                                <Card style={styles.card}>
+                                    <CardHeader text={'SIGNUP'} style={styles.cardHeader} />
+                                    <View style={{ ...Constent.insideCenter }}>
+                                        {inputs()}
+                                        {checkBox()}
+                                        <DoneButton func={signUp} text={'SIGNUP'} colors={Colors.btnColor} style={{ width: '70%' }} />
+                                        {goToLogin()}
+                                    </View>
+                                </Card>
+                            </View>
+                        </ScrollView>
+                    </View>
+                </TouchableWithoutFeedback>
             </BkcView>
             <MessageBar />
-        </KeyboardAvoidingView>
+        </KeyboardAvoidingView >
     )
 }

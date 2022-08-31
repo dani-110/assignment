@@ -1,5 +1,5 @@
 import React from "react";
-import { MessageBar, MessageBarManager } from "react-native-message-bar";
+import { MessageBar, MessageBarManager } from "../../../../react-native-message-bar";
 import { Platform } from "react-native";
 import { Colors } from "../../../constants/colors";
 import { isIphoneX } from "react-native-iphone-x-helper";
@@ -15,14 +15,14 @@ export default class extends React.Component {
 
   styles = {
     error: {
-      backgroundColor: Colors.red,
-      strokeColor: Colors.red,
+      backgroundColor: '#FF7474',
+      strokeColor: '#FF4B4B',
       titleColor: Colors.headerColor,
       messageColor: Colors.headerColor
     },
     success: {
-      backgroundColor: Colors.green,
-      strokeColor: Colors.green,
+      backgroundColor: '#D200FF',
+      strokeColor: '#F6CAFF',
       titleColor: Colors.headerColor,
       messageColor: Colors.headerColor
     },
@@ -43,7 +43,7 @@ export default class extends React.Component {
         stylesheetSuccess={success}
         stylesheetInfo={info}
         viewTopInset={Platform.OS === "ios" ? (isIphoneX() ? 50 : 20) : 0}
-        duration={4000}
+        duration={3000}
       />
     );
   }

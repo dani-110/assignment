@@ -4,6 +4,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import { Slider } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Icons } from '../../../assets/assetsPath';
 import { styles } from './styles';
 
 const audioRecorderPlayer = new AudioRecorderPlayer();
@@ -63,13 +64,13 @@ export function Player(props) {
 
     return (
         <View style={styles.main}>
-            <TouchableOpacity onPress={() => playStatus ? onPausePlay() : onStartPlay(data)}>
-                <Icon
-                    name={playStatus ? "pause" : "play-arrow"}
-                    size={20}
-                    color={'#000'}
-                    style={styles.icon}
-                />
+            <TouchableOpacity onPress={() => playStatus ? onPausePlay() : onStartPlay(data)} style={{ marginRight: 10 }}>
+                {
+                    playStatus ?
+                        <Icons.Pause width={15} height={15} fill={'#000'} />
+                        : <Icons.Play width={15} height={15} fill={'#000'} />
+                }
+
             </TouchableOpacity>
             <Slider
                 onSlidingStart={() => console.log('start')}

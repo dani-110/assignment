@@ -6,6 +6,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Colors } from '../../../constants/colors';
 import { Constent } from '../../../constants/AppStyles';
+import { Icons } from '../../../assets/assetsPath';
 // create a component
 export function MsgInput(props) {
     const {
@@ -33,11 +34,7 @@ export function MsgInput(props) {
                     <View style={Constent.insideCenter}>
                         <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={Colors.btnColor} style={styles.send}>
                             <TouchableOpacity onPress={sendMsg} >
-                                <Icon
-                                    name="send"
-                                    size={18}
-                                    color={'#fff'}
-                                />
+                                <Icons.PaperPlane width={15} height={15} fill={'#fff'} />
                             </TouchableOpacity>
                         </LinearGradient>
                     </View>

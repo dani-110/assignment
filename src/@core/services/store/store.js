@@ -5,11 +5,13 @@ import AsyncStorage from '@react-native-community/async-storage';
 import autoMergeLevel1 from 'redux-persist/lib/stateReconciler/autoMergeLevel1';
 import tokenReducer from './token/reducer';
 import UserReducer from './user/reducer'
+import filterReducer from './isFilter/reducer'
 
 
 const rootReducer = combineReducers({
     tokenReducer,
-    UserReducer
+    UserReducer,
+    filterReducer
 })
 
 const persistConfig = {

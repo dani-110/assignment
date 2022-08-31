@@ -16,10 +16,6 @@ export const Forgot = (props) => {
         navigation.navigate('Verification', { name: 'forgot', email: email })
     }
 
-    const selector = useSelector((state) => {
-        return state.tokenReducer
-    })
-
     const validateForm = () => {
         if (_.isEmpty(email)) {
             Util.topAlertError("Email is empty")
@@ -37,9 +33,9 @@ export const Forgot = (props) => {
                 "email": email
             }
             try {
-                await axios._postApi('/resetcode', params, selector.token).then(res => {
-                    console.log(res.data, 'response of resgister')
-                    if (res.status == 200) {
+                await axios._postApi('/resetcode', params).then(res => {
+                    console.log(res, 'response of resgister')
+                    if (res.status == 200 && !res.data['error']) {
                         gotoVerification()
                     } else {
                         Util.topAlertError(res.data.error)

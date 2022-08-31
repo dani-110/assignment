@@ -6,7 +6,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 export const styles = StyleSheet.create({
     firstView: { flex: 1, ...Constent.insideCenter },
     main: { flex: 1, paddingHorizontal: hp('2%'), justifyContent: 'center' },
-    input: { marginVertical: hp('0.5%'), width: '100%', paddingHorizontal: hp('2%') },
+    input: { marginVertical: hp('1%'), width: '100%', paddingHorizontal: hp('2%') },
     forgot: { color: '#fff', ...Constent.mainFont, fontWeight: '500' },
     forgotView: { marginVertical: hp('3%') },
     signUp: { color: '#7167FC', ...Constent.mainFont, fontWeight: '500' },

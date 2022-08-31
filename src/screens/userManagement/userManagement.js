@@ -14,6 +14,7 @@ export const UserManagement = (props) => {
     const [detachDialog, setDetachDialog] = useState(false)
     const [assignDialog, setAssignDialog] = useState(false)
     const [memberDialog, setMemberDialog] = useState(false)
+    const [isScroll, setIsScroll] = useState(false)
 
     const [teamMembers, setTeamMembers] = useState([
         {
@@ -28,6 +29,7 @@ export const UserManagement = (props) => {
         setTeamMembers(teamMembers.concat())
     }
     const addMore = () => {
+        setIsScroll(true)
         teamMembers.push({ name: '', email: '' })
         setTeamMembers(teamMembers.concat())
     }
@@ -49,6 +51,8 @@ export const UserManagement = (props) => {
             setTeamField={setTeamField}
             addMore={addMore}
             removeMembers={removeMembers}
+            isScroll={isScroll}
+            setIsScroll={setIsScroll}
         />
     )
 }

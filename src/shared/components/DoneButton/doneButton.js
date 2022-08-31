@@ -1,7 +1,6 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import { Images } from '../../../../cometchat-pro-react-native-ui-kit/src/theme';
 import { styles } from './style'
 import LinearGradient from 'react-native-linear-gradient';
 // import { Images } from '../../../assets/theme'

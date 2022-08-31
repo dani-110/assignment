@@ -32,9 +32,6 @@ export const NewPass = (props) => {
         setSecureTextEntry3(!secureTextEntry3);
     };
 
-    const selector = useSelector((state) => {
-        return state.tokenReducer
-    })
 
     const validateForm = () => {
         if (_.isEmpty(password)) {
@@ -63,7 +60,8 @@ export const NewPass = (props) => {
                 "password": password
             }
             try {
-                await axios._postApi('/resetpassword', param, selector.token).then(res => {
+                await axios._postApi('/resetpassword', param).then(res => {
+                    console.log(res)
                     if (res.status == 200) {
                         if (res.data['clientid']) {
                             setSaveDisable(true)
