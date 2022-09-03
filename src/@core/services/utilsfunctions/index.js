@@ -5,6 +5,7 @@ const getData = async (url) => {
 }
 
 const postData = async (url, data, token) => {
+    console.log(url, data, token)
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
     return await axios.post(url, data)
         .then((response) => {

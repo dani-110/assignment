@@ -35,9 +35,7 @@ export const SignUp = (props) => {
         setSecureTextEntry2(!secureTextEntry2);
     };
 
-    useEffect(() => {
-        getAuth()
-    }, [])
+
     const gotoLogin = () => {
         navigation.navigate('Login')
     }

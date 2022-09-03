@@ -6,6 +6,7 @@ import { Colors } from '../../constants/colors';
 import Util from '../../util';
 import { CommonActions } from "@react-navigation/native";
 import { WebView } from 'react-native-webview';
+import { tokenValue } from '../../@core/services/store';
 
 export const Verification = (props) => {
     const {
@@ -27,7 +28,9 @@ export const Verification = (props) => {
     const [resendDisable, setResendDisable] = useState(false)
     const [counterDisable, setCounterDisable] = useState(true)
     const [editable, setEditable] = useState(true)
+    const [wrongCount, setwrongCount] = useState(3)
 
+    const dispatch = useDispatch()
     const selector = useSelector((state) => {
         return state.tokenReducer
     })
@@ -36,13 +39,14 @@ export const Verification = (props) => {
         // navigation.navigate('NewPass', { updatePass: false })
     }
 
-    const gotoConnect = () => {
+    const gotoConnect = (email) => {
         setBorderColor(Colors.green)
+        setwrongCount(3)
         if (params?.name == 'signup') {
             navigation.dispatch(
                 CommonActions.reset({
                     index: 0,
-                    routes: [{ name: "ConnectWith" }],
+                    routes: [{ name: "ConnectWith", params: { email: email.clientid } }],
                 })
             );
         }
@@ -57,7 +61,6 @@ export const Verification = (props) => {
         barInterVal = setInterval(() => {
             // setBarCounter(arr + 1)
             arr = arr + 1
-            console.log(arr)
             setBarCounter(arr / 20)
             if (arr == 20) {
                 clearInterval(barInterVal)
@@ -73,7 +76,6 @@ export const Verification = (props) => {
         let arr = 30
         counterInterval = setInterval(() => {
             arr = arr - 1
-            console.log(arr)
             setCounter(arr)
             if (arr == 0) {
                 clearInterval(counterInterval)
@@ -90,20 +92,20 @@ export const Verification = (props) => {
         }
         try {
             await axios._postApi('/verifycode', params).then(res => {
-                console.log(res)
+                console.log(res, wrongCount)
                 if (res.status == 200) {
-                    if (res?.data?.error) {
-                        setBorderColor('red')
-                        if (res.data['error'] == "bad code.") {
-                            Util.topAlertError("Invalid Code.")
-                        } else if (res.data['error'] == "code expired due to multiple wrong retries") {
-                            Util.topAlertError("You have tried multiple time. Please attempt in 30 sec.")
-                            startCounter()
-                            setCounterDisable(false)
-                        }
-                    } else {
-                        gotoConnect()
-                    }
+                    gotoConnect(res.data)
+                    dispatch(tokenValue(res.data.token))
+                }
+                else if (res.status == 406 && wrongCount > 0) {
+                    setwrongCount(wrongCount - 1)
+                    setBorderColor('red')
+                    Util.topAlertError("Invalid Code.")
+                } else {
+                    setBorderColor('red')
+                    Util.topAlertError("You have tried multiple time your code is expired. Please attempt in 30 sec with new code.")
+                    startCounter()
+                    setCounterDisable(false)
                 }
             })
         }
@@ -119,6 +121,7 @@ export const Verification = (props) => {
                 console.log(res, 'reset code')
                 if (res.status = 200) {
                     startBarCount()
+                    setwrongCount(3)
                 }
             })
         }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { View, Text, ScrollView, SafeAreaView, Platform, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, TouchableOpacity, TextInput } from 'react-native'
 import { styles } from './chat.styles'
 import { Constent } from '../../constants/AppStyles'
@@ -21,6 +21,7 @@ export const ChatStory = (props) => {
         messages
     } = props
 
+    const scrollViewRef = useRef()
     const obj = [
         {
             name: 'Faizan Siddiqui',
@@ -60,7 +61,7 @@ export const ChatStory = (props) => {
         }
     ]
     return (
-        <View style={{ flex: 1, padding: 10, backgroundColor: '#e9e4e400' }}>
+        <View style={{ flex: 1, padding: hp('1%'), backgroundColor: '#e9e4e400' }}>
             {/* <View style={{ flexDirection: 'row', borderBottomWidth: 1, padding: 10 }}>
                 <Text>To:</Text>
                 
@@ -75,7 +76,12 @@ export const ChatStory = (props) => {
                     )}
                 /> : null
             }
-            <ScrollView style={{ flex: 1 }}>
+            <ScrollView
+                ref={scrollViewRef}
+                showsVerticalScrollIndicator={false}
+                onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })
+                }
+                style={{ flex: 1, marginBottom: hp('2%') }}>
                 {!newChat ?
                     messages.map((item, index) => (
                         <ChatBubble item={item} />

@@ -34,27 +34,34 @@ export const SmsStack = (props) => {
                         style={{ flexDirection: "row", alignItems: 'center' }}
                     >
                         <Icon
-                            name={Platform.OS == 'ios' ? 'arrow-back-ios' : 'arrow-back'}
+                            name={'arrow-back-ios'}
                             size={25}
-                            color={Platform.OS == 'ios' ? '#0074cc' : '#000'}
+                            color={'#000'}
                         />
-                        {/* {
-                            Platform.OS == 'ios' ?
-                                <Text style={{ fontSize: 18, color: '#0074cc' }}>Back</Text> : null
-                        } */}
-
                     </TouchableOpacity>
                 ),
                 headerRight: () => (
                     <TouchableOpacity
                         onPress={() => props.navigation.navigate('Chat', { new: true })}
                     >
-                        <Icons.Plus width={20} height={20} fill={"#000"} />
+                        <Icons.Plus width={20} height={20} fill={Colors.purple} />
                     </TouchableOpacity>
                 )
             }} />
-            <Stack.Screen name="Chat" component={Chat} options={{
+            <Stack.Screen name="Chat" component={Chat} options={({ navigation, route }) => ({
                 title: 'Name',
+                headerLeft: () => (
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={{ flexDirection: "row", alignItems: 'center' }}
+                    >
+                        <Icon
+                            name={'arrow-back-ios'}
+                            size={25}
+                            color={'#000'}
+                        />
+                    </TouchableOpacity>
+                ),
                 headerRight: () => (
                     <TouchableOpacity
 
@@ -64,7 +71,7 @@ export const SmsStack = (props) => {
 
                     </TouchableOpacity>
                 )
-            }} />
+            })} />
         </Stack.Navigator>
     )
 }

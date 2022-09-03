@@ -34,15 +34,22 @@ export const Routes = () => {
                 },
                 headerShown: false,
                 animation: 'slide_from_right',
-                headerBackTitleVisible: false,
+                headerBackTitleVisible: false
             }}>
                 <Stack.Screen name={'AuthStack'} component={AuthStack} options={{ headerShown: false }} />
                 <Stack.Screen name={'ForgotStack'} component={ForgotStack} options={{ headerShown: false }} />
                 <Stack.Screen name={'DashboardStack'} component={DrawerStack} options={{ headerShown: false }} />
-                <Stack.Screen name={'CallLogs'} component={CallLogs} options={{
+                <Stack.Screen name={'CallLogs'} component={CallLogs} options={({ navigation, route }) => ({
                     title: 'Calling History',
                     headerShown: true,
                     headerTitleAlign: 'center',
+                    headerLeft: () => (
+                        <TouchableOpacity
+                            onPress={() => navigation.goBack()}
+                        >
+                            <Icon name='arrow-back-ios' size={20} />
+                        </TouchableOpacity>
+                    ),
                     headerRight: () => (
                         <TouchableOpacity
                             onPress={() => dispatch(filterValue(filterSelector ? false : true))}
@@ -50,12 +57,19 @@ export const Routes = () => {
                             <Icon name='filter-list' size={20} />
                         </TouchableOpacity>
                     )
-                }} />
+                })} />
                 <Stack.Screen name={'Conversation'} component={SmsStack} />
-                <Stack.Screen name={'Dialer'} component={Dialer} options={{
+                <Stack.Screen name={'Dialer'} component={Dialer} options={({ navigation, route }) => ({
                     headerShown: true,
-                    headerTitleAlign: 'center'
-                }} />
+                    headerTitleAlign: 'center',
+                    headerLeft: () => (
+                        <TouchableOpacity
+                            onPress={() => navigation.goBack()}
+                        >
+                            <Icon name='arrow-back-ios' size={20} />
+                        </TouchableOpacity>
+                    )
+                })} />
 
                 <Stack.Screen name="ConnectWith" component={ConnectWith} />
                 <Stack.Screen name='ConnectBusiness' component={ConnectBusiness} />

@@ -8,6 +8,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DrawerView } from './drawerContent';
 import { Colors } from '../../../../constants/colors';
 import { Icons } from '../../../../assets/assetsPath';
+import { TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -20,11 +22,9 @@ export const DrawerStack = (props) => {
         // </Stack.Navigator>
         <Drawer.Navigator
             screenOptions={{
-                // drawerStyle: { width: '80%' }
-                headerStyle: {
-                    backgroundColor: Colors.headerBase,
-                },
-                headerLeftContainerStyle: { color: '#000' }
+                drawerIcon: () => (
+                    <Icons.Setting width={20} height={20} fill={"#000"} />
+                ),
             }}
             drawerContent={props => <DrawerView {...props} />}
             initialRouteName="Dashboard">

@@ -19,6 +19,8 @@ export const CallLogs = (props) => {
     const [filterType, setFilterType] = useState(['All', 'Missed', 'Incoming', 'Outgoing', 'Voicemail'])
     const [isSelectedFilter, setIsSelectedFilter] = useState('All')
 
+    const [showDialog, setShowDialog] = useState(false)
+
     const dispatch = useDispatch()
     const selector = useSelector((state) => {
         return state.filterReducer.isFilter
@@ -52,6 +54,8 @@ export const CallLogs = (props) => {
             filterType={filterType}
             isSelectedFilter={isSelectedFilter}
             setFilterCheck={setFilterCheck}
+            showDialog={showDialog}
+            setShowDialog={setShowDialog}
         />
     )
 }

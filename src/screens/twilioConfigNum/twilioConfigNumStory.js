@@ -25,7 +25,8 @@ export const TwilioConfigNumStory = (props) => {
         setValue,
         items,
         setItems,
-        gotoDashboard
+        gotoDashboard,
+        setTwilioConfig
     } = props
 
     const inputs = () => (
@@ -39,7 +40,7 @@ export const TwilioConfigNumStory = (props) => {
                     setOpen={setOpen}
                     setValue={setValue}
                     setItems={setItems}
-                    placeholder={'Phone Number'}
+                    placeholder={'Select a number'}
                     dropDownContainerStyle={{ borderWidth: 0, marginTop: 5 }}
                     TickIconComponent={() => <View style={styles.check}>
                         <Icon
@@ -72,7 +73,7 @@ export const TwilioConfigNumStory = (props) => {
                                 {inputs()}
                             </View>
                             <View style={{ flex: 1, alignItems: 'center', }}>
-                                <DoneButton func={gotoDashboard} text={'PROCEED'} colors={['#9C00FF', '#9C00FF']} style={{ width: hp('20%') }} />
+                                <DoneButton func={setTwilioConfig} text={'PROCEED'} colors={['#9C00FF', '#9C00FF']} style={{ width: hp('20%') }} />
                                 <Text style={styles.bottomDesc}>{"If you have multiple numbers,\n you may switch it later."}</Text>
                             </View>
 

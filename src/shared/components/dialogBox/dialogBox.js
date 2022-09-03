@@ -20,7 +20,7 @@ export function DialogBox(props) {
         >
             {
                 title ?
-                    <Dialog.Title > {title}</Dialog.Title >
+                    <Dialog.Title style={{ textAlign: 'center' }}> {title}</Dialog.Title >
                     : null
             }
             {props.children}

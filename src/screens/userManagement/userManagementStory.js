@@ -171,55 +171,56 @@ export const UserManagementStory = (props) => {
                         showsVerticalScrollIndicator={false}
                         onContentSizeChange={() => isScroll ? scrollViewRef.current.scrollToEnd({ animated: true }) : null
                         }
-                        style={{ paddingHorizontal: 10, paddingVertical: 20, marginBottom: 50 }}
+                        style={{ paddingHorizontal: 10, paddingVertical: 20, marginBottom: 50, }}
                     >
-                        {
-                            teamMembers.map((item, index) => (
-                                <View style={{ flexDirection: 'row', }}>
-                                    <Text style={{ marginTop: hp('2.5%'), marginRight: 10 }} >{index + 1}.</Text>
-                                    <View style={{ flex: 1, }}>
-                                        <View style={styles.input}>
-                                            <DataInput placeholder={'Name'}
-                                                value={item.name}
-                                                onChang={(e) => setTeamField(e, 'name', index)}
-                                                selectedTextColor={Colors.purple}
-                                                backgroundColor={Colors.headerBase}
-                                                unselectedTextColor={Colors.purple} />
+                        <View style={{ flex: 1 }}>
+                            {
+                                teamMembers.map((item, index) => (
+                                    <View style={{ flex: 1, flexDirection: 'row', }}>
+                                        <Text style={{ marginTop: hp('2.5%'), marginRight: 10 }} >{index + 1}.</Text>
+                                        <View style={{ flex: 1, }}>
+                                            <View style={styles.input}>
+                                                <DataInput placeholder={'Name'}
+                                                    value={item.name}
+                                                    onChang={(e) => setTeamField(e, 'name', index)}
+                                                    selectedTextColor={Colors.purple}
+                                                    backgroundColor={Colors.headerBase}
+                                                    unselectedTextColor={Colors.purple} />
+                                            </View>
+                                            <View style={styles.input}>
+                                                <DataInput placeholder={'Email'}
+                                                    value={item.email}
+                                                    onChang={(e) => setTeamField(e, 'email', index)}
+                                                    keyboardType={'email-address'}
+                                                    selectedTextColor={Colors.purple}
+                                                    backgroundColor={Colors.headerBase}
+                                                    unselectedTextColor={Colors.purple} />
+                                            </View>
                                         </View>
-                                        <View style={styles.input}>
-                                            <DataInput placeholder={'Email'}
-                                                value={item.email}
-                                                onChang={(e) => setTeamField(e, 'email', index)}
-                                                keyboardType={'email-address'}
-                                                selectedTextColor={Colors.purple}
-                                                backgroundColor={Colors.headerBase}
-                                                unselectedTextColor={Colors.purple} />
-                                        </View>
-                                    </View>
-                                    <View style={{ justifyContent: "space-around", alignItems: 'center', paddingLeft: 10 }}>
-                                        {
-                                            index > 0 ? <TouchableOpacity onPress={() => { removeMembers(index), setIsScroll(false) }} style={{ ...Constent.insideCenter, borderRadius: 100, padding: 5 }}>
-                                                <Icons.Trash width={20} height={20} fill={Colors.unread} />
+                                        <View style={{ justifyContent: "space-around", alignItems: 'center', paddingLeft: 10 }}>
+                                            {
+                                                index > 0 ? <TouchableOpacity onPress={() => { removeMembers(index), setIsScroll(false) }} style={{ ...Constent.insideCenter, borderRadius: 100, padding: 5 }}>
+                                                    <Icons.Trash width={20} height={20} fill={Colors.unread} />
+                                                </TouchableOpacity>
+                                                    :
+                                                    <View style={{ ...Constent.insideCenter, borderRadius: 100, padding: 5 }}>
+                                                        <Icon
+                                                            name='close'
+                                                            color={'transparent'}
+                                                            size={20}
+                                                        />
+                                                    </View>
+
+                                            }
+                                            {teamMembers.length == index + 1 ? < TouchableOpacity onPress={addMore} style={{ ...Constent.insideCenter, borderRadius: 100, padding: 5 }}>
+                                                <Icons.Plus width={20} height={20} fill={Colors.purple} />
                                             </TouchableOpacity>
-                                                :
-                                                <View style={{ ...Constent.insideCenter, borderRadius: 100, padding: 5 }}>
-                                                    <Icon
-                                                        name='close'
-                                                        color={'transparent'}
-                                                        size={20}
-                                                    />
-                                                </View>
-
-                                        }
-                                        {teamMembers.length == index + 1 ? < TouchableOpacity onPress={addMore} style={{ ...Constent.insideCenter, borderRadius: 100, padding: 5 }}>
-                                            <Icons.Plus width={20} height={20} fill={Colors.purple} />
-                                        </TouchableOpacity>
-                                            : null}
+                                                : null}
+                                        </View>
                                     </View>
-                                </View>
-                            ))
-                        }
-
+                                ))
+                            }
+                        </View>
                     </ScrollView>
                     <View style={Constent.insideCenter}>
                         <DoneButton func={setMemberDialog} text={'Send Invite'} colors={['#9C00FF', '#9C00FF']} />
