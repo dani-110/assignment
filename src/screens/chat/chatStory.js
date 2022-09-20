@@ -14,6 +14,8 @@ import { FlatList } from 'react-native';
 import { DialogBox } from '../../shared/components/dialogBox/dialogBox';
 import { DoneButton } from '../../shared/components/DoneButton/doneButton';
 import { Icons } from '../../assets/assetsPath';
+import { DataInput } from '../../shared/components/DataInput/dataInput';
+import MessageBar from '../../shared/components/MessageBar';
 
 export const ChatStory = (props) => {
     const {
@@ -30,7 +32,22 @@ export const ChatStory = (props) => {
         setSearch,
         userSelect,
         selectedUser,
-        onRemove
+        onRemove,
+        contactDetail,
+        saveDialog,
+        setSaveDialog,
+        firstName,
+        setFirstName,
+        lastName,
+        setLastName,
+        email,
+        setEmail,
+        phone,
+        setPhone,
+        addContact,
+        isEditable,
+        setIsEditable,
+        updateContact
     } = props
 
     const scrollViewRef = useRef()
@@ -72,8 +89,9 @@ export const ChatStory = (props) => {
             side: 1
         }
     ]
+
     return (
-        <View style={{ flex: 1, backgroundColor: '#e9e4e400', paddingVertical: hp('1%') }}>
+        <View style={{ flex: 1, backgroundColor: '#e9e4e400', padding: hp('1%') }}>
             {/* <View style={{ flexDirection: 'row', borderBottomWidth: 1, padding: 10 }}>
                 <Text>To:</Text>
                 
@@ -147,17 +165,73 @@ export const ChatStory = (props) => {
             <DialogBox
                 visible={showDialog}
                 setVisible={onClose}
-                title={'User Info'}
+                title={'Contact Info'}
                 style={{ padding: 20, width: Dimensions.get('window').width - 50, maxHeight: 500, backgroundColor: '#fff' }}
             >
-                <View style={{ ...Constent.insideCenter }}>
-                    <Text style={styles.contentText}>Name: Faizan Ahmed Siddiqui</Text>
-                    <Text>Phone: +923567891102</Text>
+                <TouchableOpacity onPress={() => setIsEditable(true)} style={{ marginBottom: 20, ...Constent.insideCenter }}>
+                    {/* <Text style={{ textDecorationLine: 'underline', color: Colors.purple }}>Edit</Text> */}
+                    <Icon name="drive-file-rename-outline" size={25} color={Colors.purple} />
+                </TouchableOpacity>
+                <View>
+                    {/* <Text style={styles.contentText}>{`First Name: ${contactDetail?.firstName}`}</Text>
+                    <Text style={styles.contentText}>{`Last Name: ${contactDetail?.lastName}`}</Text>
+                    <Text style={styles.contentText}>{`Phone: ${contactDetail?.number}`}</Text>
+                    <Text style={styles.contentText}>{`Email: ${contactDetail?.email}`}</Text> */}
+
+                    <View style={styles.input}>
+                        <DataInput
+                            placeholder={"First Name"}
+                            value={firstName}
+                            onChang={setFirstName}
+                            selectedTextColor={Colors.purple}
+                            backgroundColor={Colors.headerBase}
+                            unselectedTextColor={Colors.purple}
+                            editable={isEditable}
+                        />
+                    </View>
+                    <View style={styles.input}>
+                        <DataInput
+                            placeholder={"Last Name"}
+                            value={lastName}
+                            onChang={setLastName}
+                            selectedTextColor={Colors.purple}
+                            backgroundColor={Colors.headerBase}
+                            unselectedTextColor={Colors.purple}
+                            editable={isEditable}
+                        />
+                    </View>
+                    <View style={styles.input}>
+                        <DataInput
+                            placeholder={"Phone Number"}
+                            value={phone}
+                            onChang={setPhone}
+                            keyboardType={'number-pad'}
+                            selectedTextColor={Colors.purple}
+                            backgroundColor={Colors.headerBase}
+                            unselectedTextColor={Colors.purple}
+                            editable={isEditable}
+                        />
+                    </View>
+                    <View style={styles.input}>
+                        <DataInput
+                            placeholder={"Email"}
+                            value={email}
+                            onChang={setEmail}
+                            keyboardType={'email-address'}
+                            selectedTextColor={Colors.purple}
+                            backgroundColor={Colors.headerBase}
+                            unselectedTextColor={Colors.purple}
+                            editable={isEditable}
+                        />
+                    </View>
                 </View>
 
-                {/* <View style={{ ...Constent.insideCenter, marginTop: hp('5%') }}>
-                    <DoneButton func={() => onClose(false)} colors={['#000', '#000']} text={'Apply'} style={{ marginBottom: 20, width: '60%' }} />
-                </View> */}
+                {isEditable ?
+                    <View style={{ ...Constent.insideCenter }}>
+                        <DoneButton func={updateContact} colors={['#000', '#000']} text={'Apply'} style={{ marginBottom: 20, width: '60%' }} />
+                    </View>
+                    : null
+                }
                 < TouchableOpacity onPress={() => onClose(false)} style={{
                     ...Constent.insideCenter,
                     borderRadius: 100, padding: 5, position: 'absolute', top: 10, zIndex: 100, right: 10, transform: [{ rotate: '45deg' }]
@@ -165,6 +239,67 @@ export const ChatStory = (props) => {
                     <Icons.Plus width={15} height={15} fill={"#000"} />
                 </TouchableOpacity>
             </DialogBox>
+
+            <DialogBox
+                visible={saveDialog}
+                setVisible={onClose}
+                title={'Contact Info'}
+                style={{ padding: 20, width: Dimensions.get('window').width - 50, maxHeight: 500 }}
+            >
+                <View style={styles.input}>
+                    <DataInput
+                        placeholder={"First Name"}
+                        value={firstName}
+                        onChang={setFirstName}
+                        selectedTextColor={Colors.purple}
+                        backgroundColor={Colors.headerBase}
+                        unselectedTextColor={Colors.purple}
+                    />
+                </View>
+                <View style={styles.input}>
+                    <DataInput
+                        placeholder={"Last Name"}
+                        value={lastName}
+                        onChang={setLastName}
+                        selectedTextColor={Colors.purple}
+                        backgroundColor={Colors.headerBase}
+                        unselectedTextColor={Colors.purple}
+                    />
+                </View>
+                <View style={styles.input}>
+                    <DataInput
+                        placeholder={"Phone Number"}
+                        value={phone}
+                        onChang={setPhone}
+                        keyboardType={'number-pad'}
+                        selectedTextColor={Colors.purple}
+                        backgroundColor={Colors.headerBase}
+                        unselectedTextColor={Colors.purple}
+                    />
+                </View>
+                <View style={styles.input}>
+                    <DataInput
+                        placeholder={"Email"}
+                        value={email}
+                        onChang={setEmail}
+                        keyboardType={'email-address'}
+                        selectedTextColor={Colors.purple}
+                        backgroundColor={Colors.headerBase}
+                        unselectedTextColor={Colors.purple}
+                    />
+                </View>
+
+                <View style={{ ...Constent.insideCenter, }}>
+                    <DoneButton func={addContact} colors={['#000', '#000']} text={'Save'} style={{ marginBottom: 20, width: '60%' }} />
+                </View>
+                < TouchableOpacity onPress={() => onClose(false)} style={{
+                    ...Constent.insideCenter,
+                    borderRadius: 100, padding: 5, position: 'absolute', top: 10, zIndex: 100, right: 10, transform: [{ rotate: '45deg' }]
+                }}>
+                    <Icons.Plus width={15} height={15} fill={"#000"} />
+                </TouchableOpacity>
+            </DialogBox>
+            <MessageBar />
         </View>
     )
 }

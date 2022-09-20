@@ -39,7 +39,7 @@ export class DataInput extends Component {
             left: 0,
             top: this._animatedIsFocused.interpolate({
                 inputRange: [0, 1],
-                outputRange: [hp('1.5%'), -20],
+                outputRange: [hp('1.5%'), -25],
             }),
             fontSize: this._animatedIsFocused.interpolate({
                 inputRange: [0, 10],

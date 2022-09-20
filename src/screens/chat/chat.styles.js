@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     main: { flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#A4A4A4' },
     unread: { height: hp('3%'), width: hp('3%'), backgroundColor: Colors.unread, borderRadius: hp('100%'), ...Constent.insideCenter },
     unreadText: { color: Colors.headerColor, fontSize: hp('1.5%'), fontWeight: '500' },
-    contentText: { fontSize: hp('2%'), marginVertical: hp('0.5%'), fontWeight: '600', color: '#000' },
+    contentText: { fontSize: hp('2%'), marginVertical: hp('0.5%'), color: '#000' },
     suggestions: {
         height: hp('30%'), width: '90%',
         borderBottomRightRadius: hp('1%'),
@@ -21,5 +21,6 @@ export const styles = StyleSheet.create({
             height: 2,
         },
         padding: 10
-    }
+    },
+    input: { marginVertical: hp('1.5%'), width: '100%' },
 })

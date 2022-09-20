@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { ChatStory } from './chatStory';
 import { useDispatch, useSelector } from 'react-redux'
-import { infoValue } from '../../@core/services/store';
+import { contactValue, infoValue } from '../../@core/services/store';
+import Contacts from 'react-native-contacts';
+import Util from '../../util';
+import _ from "lodash";
 
 const obj = [
     {
@@ -56,6 +59,17 @@ export const Chat = (props) => {
     const [constactList, setContactList] = useState([])
     const [search, setSearch] = useState('')
     const [selectedUser, setSelectedUser] = useState([])
+    const [contactDetail, setContactDetail] = useState({})
+
+    const [saveDialog, setSaveDialog] = useState(false)
+
+
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+
+    const [isEditable, setIsEditable] = useState(false)
 
     const contactSelector = useSelector((state) => {
         return state?.contactReducer?.contactList
@@ -67,12 +81,26 @@ export const Chat = (props) => {
     })
 
     useEffect(() => {
-        setShowDialog(selector)
+        console.log(params?.data?.name)
+        getContact()
+    }, [])
+
+    useEffect(() => {
+        if (params?.data?.name == "Unknown Contact") {
+            setSaveDialog(selector)
+        } else {
+            setShowDialog(selector)
+        }
+
+
     }, [selector])
 
 
     const onClose = (val) => {
         dispatch(infoValue(val))
+        setTimeout(() => {
+            setIsEditable(false)
+        }, 1000)
     };
 
     const sendMsg = () => {
@@ -118,6 +146,87 @@ export const Chat = (props) => {
         setSelectedUser(selectedUser.concat())
     }
 
+    const getContact = () => {
+        if (params?.data?.name != "Unknown Contact") {
+            Contacts.getContactsByPhoneNumber("(888) 555-5513").then(res => {
+                console.log(res)
+                setContactDetail(res[0])
+                setFirstName(res[0].givenName)
+                setLastName(res[0].familyName)
+                setEmail(res[0].emailAddresses[0]?.email)
+                setPhone(res[0].phoneNumbers[0]?.number)
+            })
+        }
+
+    }
+
+    const validateForm = () => {
+        if (_.isEmpty(firstName)) {
+            Util.topAlertError("First Name is empty")
+            return false
+        } else if (_.isEmpty(phone)) {
+            Util.topAlertError("Phone Number is empty")
+            return false
+        } else if (email.length > 0 && !Util.isEmailValid(email)) {
+            Util.topAlertError("email is not in correct format")
+            return false
+        }
+        return true
+    }
+
+    const addContact = () => {
+        console.log(contactSelector)
+        if (validateForm()) {
+            var newPerson = {
+                emailAddresses: [{
+                    label: "home",
+                    email: email,
+                }],
+                phoneNumbers: [{
+                    label: "mobile",
+                    number: phone
+                }],
+                familyName: lastName,
+                givenName: firstName,
+            }
+            Contacts.addContact(newPerson).then(res => {
+                let arr = [...contactSelector]
+                arr.push({
+                    value: res?.givenName + " " + res?.familyName,
+                    key: contactSelector.length,
+                    number: res?.phoneNumbers[0]?.number,
+                    e: res
+                })
+                dispatch(contactValue(arr.concat()))
+                onClose(false)
+            })
+        }
+    }
+
+    const updateContact = () => {
+        setIsEditable(false)
+        // Contacts.getAll().then(contacts => {
+        //     // update the first record
+        //     let someRecord = contacts[0]
+        //     console.log(someRecord)
+        // })
+        console.log(contactDetail)
+        contactDetail.givenName = firstName
+        contactDetail.familyName = lastName
+        contactDetail.emailAddresses = [{
+            label: "home",
+            email: email
+        }]
+        contactDetail.phoneNumbers = [{
+            label: "mobile",
+            number: phone
+        }]
+        Contacts.updateContact(contactDetail).then((res) => {
+            console.log(res)
+        })
+
+    }
+
     return (
         <ChatStory
             text={text}
@@ -134,6 +243,21 @@ export const Chat = (props) => {
             userSelect={userSelect}
             selectedUser={selectedUser}
             onRemove={onRemove}
+            contactDetail={contactDetail}
+            saveDialog={saveDialog}
+            setSaveDialog={setSaveDialog}
+            firstName={firstName}
+            setFirstName={setFirstName}
+            lastName={lastName}
+            setLastName={setLastName}
+            email={email}
+            setEmail={setEmail}
+            phone={phone}
+            setPhone={setPhone}
+            addContact={addContact}
+            isEditable={isEditable}
+            setIsEditable={setIsEditable}
+            updateContact={updateContact}
         />
     )
 }
