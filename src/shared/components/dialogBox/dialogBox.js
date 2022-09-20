@@ -16,7 +16,7 @@ export function DialogBox(props) {
         <Dialog.Container
             visible={visible}
             onBackdropPress={() => setVisible(false)}
-            contentStyle={{ ...style }}
+            contentStyle={{ ...style, backgroundColor: '#fff', borderRadius: 10 }}
         >
             {
                 title ?

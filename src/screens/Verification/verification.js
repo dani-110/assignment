@@ -46,7 +46,7 @@ export const Verification = (props) => {
             navigation.dispatch(
                 CommonActions.reset({
                     index: 0,
-                    routes: [{ name: "ConnectWith", params: { email: email.clientid } }],
+                    routes: [{ name: "ConnectWith", params: { email: email?.clientid } }],
                 })
             );
         }
@@ -135,8 +135,8 @@ export const Verification = (props) => {
         console.log(e.length)
         if (e.length == 4) {
             console.log(e.length, 'sads')
-            verifyCode(e)
-            // gotoConnect()
+            // verifyCode(e)
+            gotoConnect()
         }
     }
 

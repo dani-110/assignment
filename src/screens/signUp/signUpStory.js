@@ -120,7 +120,7 @@ export const SignUpStory = (props) => {
                                     <View style={{ ...Constent.insideCenter }}>
                                         {inputs()}
                                         {checkBox()}
-                                        <DoneButton func={signUp} text={'SIGNUP'} colors={Colors.btnColor} style={{ width: '70%' }} />
+                                        <DoneButton func={gotoVerification} text={'SIGNUP'} colors={Colors.btnColor} style={{ width: '70%' }} />
                                         {goToLogin()}
                                     </View>
                                 </Card>

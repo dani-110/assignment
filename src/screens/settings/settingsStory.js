@@ -144,7 +144,7 @@ export const SettingsStory = (props) => {
             visible={visible}
             setVisible={setVisible}
             title={'Change Password'}
-            style={{ width: Dimensions.get('window').width - 50, borderRadius: 20 }}
+            style={{ width: Dimensions.get('window').width - 50, borderRadius: 20, backgroundColor: '#fff' }}
         >
             <View style={{ paddingHorizontal: 25, paddingVertical: 15 }}>
                 <View style={styles.input}>

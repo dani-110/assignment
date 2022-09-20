@@ -9,5 +9,5 @@ export const styles = StyleSheet.create({
     optionText: { color: Colors.headerColor, fontSize: hp('1.8%'), fontWeight: '500', textAlign: 'center' },
     mainView: { backgroundColor: Colors.headerBase, padding: hp('1%'), borderRadius: hp('1%'), flexDirection: 'row', marginVertical: hp('0.5%') },
     contentText: { fontSize: hp('2%'), marginVertical: hp('0.5%'), fontWeight: '600', color: '#000' },
-    input: { marginTop: hp('2%'), width: '100%' },
+    input: { marginTop: hp('1%'), width: '100%' },
 })

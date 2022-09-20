@@ -282,6 +282,8 @@ PODS:
     - RCTTypeSafety
     - React
     - ReactCommon/turbomodule/core
+  - react-native-spinkit (1.4.1):
+    - React
   - react-native-webview (11.23.0):
     - React-Core
   - React-perflogger (0.66.2)
@@ -439,6 +441,7 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-contacts (from `../node_modules/react-native-contacts`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-spinkit (from `../node_modules/react-native-spinkit`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -520,6 +523,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-contacts"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-spinkit:
+    :path: "../node_modules/react-native-spinkit"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
   React-perflogger:
@@ -599,6 +604,7 @@ SPEC CHECKSUMS:
   React-logger: faee236598b0f7e1a5e3b68577016ac451f1f993
   react-native-contacts: 0aa99963d8f29099d4725cd0d2f8b6ef5f0d9a2d
   react-native-safe-area-context: 6c12e3859b6f27b25de4fee8201cfb858432d8de
+  react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   react-native-webview: e771bc375f789ebfa02a26939a57dbc6fa897336
   React-perflogger: 5ab487cacfe6ec19bfe3d3f8072bf71eb07d63da
   React-RCTActionSheet: 03f25695e095fb5aa003828620943c74cc281fec
@@ -623,6 +629,6 @@ SPEC CHECKSUMS:
   Yoga: 9a08effa851c1d8cc1647691895540bc168ea65f
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: f8131a89e2db96fa3db7894ee131a1befe64d8d6
+PODFILE CHECKSUM: 3b9b61bc6f1fed788456d8297eee240357fab897
 
 COCOAPODS: 1.11.2

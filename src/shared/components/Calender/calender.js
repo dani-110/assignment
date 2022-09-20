@@ -26,6 +26,7 @@ export function CalenderView(props) {
         return moment(date).calendar({
             sameDay: '[Today]',
             lastDay: '[Yesterday]',
+            lastWeek: 'MMM Do, YYYY',
             sameElse: 'MMM Do, YYYY'
         })
     }

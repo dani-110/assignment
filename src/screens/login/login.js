@@ -5,7 +5,9 @@ import { CommonActions } from "@react-navigation/native";
 import axios from '../../@core/services/utilsfunctions'
 import _ from "lodash";
 import Util from '../../util';
-import { tokenValue, UserValue } from '../../@core/services/store';
+import { contactValue, tokenValue, UserValue } from '../../@core/services/store';
+import Contacts from 'react-native-contacts';
+import { PermissionsAndroid } from 'react-native';
 
 import jwt_decode from "jwt-decode";
 
@@ -21,6 +23,11 @@ export const Login = (props) => {
     const [password, setPassword] = useState("123456789a");
     const [isSelected, setIsSelected] = useState(false);
     const [secureTextEntry, setSecureTextEntry] = useState(true);
+
+
+    useEffect(() => {
+        getContacts()
+    }, [])
 
     const dispatch = useDispatch()
     const selector = useSelector((state) => {
@@ -88,26 +95,49 @@ export const Login = (props) => {
                 "password": password,
             }
             try {
-                await axios._postApi('/login', params).then(res => {
-                    console.log(res)
-                    if (res.status == 200) {
-                        dispatch(UserValue({
-                            user: res.data,
-                            isLogin: true
-                        }))
-                        dispatch(tokenValue(res.data.token))
-                        gotoDashboard()
-                    } else {
-                        Util.topAlertError(res.data.error)
-                    }
-                })
+                // await axios._postApi('/login', params).then(res => {
+                //     console.log(res)
+                //     if (res.status == 200) {
+                //         dispatch(UserValue({
+                //             user: res.data,
+                //             isLogin: true
+                //         }))
+                //         dispatch(tokenValue(res.data.token))
+                gotoDashboard()
+                //     } else {
+                //         Util.topAlertError(res.data.error)
+                //     }
+                // })
             }
             catch (e) {
-                console.log(e)
+                console.log(e.response)
             }
         }
     }
 
+    const getContacts = () => {
+        PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
+            {
+                'title': 'Contacts',
+                'message': 'This app would like to view your contacts.',
+                'buttonPositive': 'Please accept bare mortal'
+            }
+        ).then(() => Contacts.getAll().then(contacts => {
+            console.log(contacts, 'contacts')
+
+            let arr = [];
+            contacts.map((e, i) => {
+                arr.push({
+                    value: e?.givenName + " " + e?.familyName,
+                    key: i,
+                    number: e?.phoneNumbers[0]?.number,
+                    e: e
+                })
+            })
+            dispatch(contactValue(arr.concat()))
+        }))
+    }
     return (
         <LoginStory
             email={email}
@@ -121,6 +151,7 @@ export const Login = (props) => {
             gotoSignUp={gotoSignUp}
             gotoForgot={gotoForgot}
             login={login}
+            gotoDashboard={gotoDashboard}
         />
     )
 

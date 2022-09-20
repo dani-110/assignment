@@ -22,7 +22,7 @@ export const DrawerHeader = () => {
 
                 <View style={{ ...styles.activeStatus, backgroundColor: isEnabled ? Colors.availale : Colors.busy }}></View>
 
-                <Text style={{ color: Colors.headerColor, ...Constent.mainFont }}>{`${selector.data.FirstName} ${selector.data.LastName}`}</Text>
+                <Text style={{ color: Colors.headerColor, ...Constent.mainFont }}>{`${selector?.data?.FirstName} ${selector?.data?.LastName}`}</Text>
 
 
                 <Switch
@@ -44,7 +44,7 @@ export const DrawerHeader = () => {
                     </View>
                     <View style={{ marginTop: hp('1%') }}>
                         <Text style={{ color: 'gray', fontSize: hp('1.8%') }}>Account No:</Text>
-                        <Text style={{ color: Colors.headerColor }}>{selector.accountNo}</Text>
+                        <Text style={{ color: Colors.headerColor }}>{selector?.accountNo}</Text>
                     </View>
                 </View>
             </View>

@@ -168,7 +168,7 @@ export const CallLogsStory = (props) => {
 
             <DialogBox
                 visible={showDialog}
-                setVisible={setShowDialog}
+                setVisible={onClose}
                 title={'Filter'}
                 style={{ padding: 20, width: Dimensions.get('window').width - 50, maxHeight: 500, borderRadius: 10 }}
             >
@@ -189,9 +189,9 @@ export const CallLogsStory = (props) => {
                     }
                 />
                 <View style={{ ...Constent.insideCenter, marginTop: hp('5%') }}>
-                    <DoneButton func={() => setShowDialog(false)} colors={['#000', '#000']} text={'Apply'} style={{ marginBottom: 20, width: '60%' }} />
+                    <DoneButton func={() => onClose(false)} colors={['#000', '#000']} text={'Apply'} style={{ marginBottom: 20, width: '60%' }} />
                 </View>
-                < TouchableOpacity onPress={() => setShowDialog(false)} style={{
+                < TouchableOpacity onPress={() => onClose(false)} style={{
                     ...Constent.insideCenter,
                     borderRadius: 100, padding: 5, position: 'absolute', top: 10, zIndex: 100, right: 10, transform: [{ rotate: '45deg' }]
                 }}>
@@ -221,11 +221,11 @@ export const CallLogsStory = (props) => {
                     }
                 </View>
             </Modalize> */}
-            <View style={{ position: 'absolute', bottom: 50, right: 50, backgroundColor: Colors.purple, height: 50, width: 50, borderRadius: 100, }}>
+            {/* <View style={{ position: 'absolute', bottom: 50, right: 50, backgroundColor: Colors.purple, height: 50, width: 50, borderRadius: 100, }}>
                 <TouchableOpacity style={{ flex: 1, ...Constent.insideCenter }} onPress={() => setShowDialog(true)}>
                     <Icon name='filter-list' size={20} color={'#fff'} />
                 </TouchableOpacity>
-            </View>
+            </View> */}
         </SafeAreaView>
     )
 }

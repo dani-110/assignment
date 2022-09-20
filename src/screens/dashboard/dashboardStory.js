@@ -147,7 +147,7 @@ export const DashboardStory = (props) => {
                 visible={showDialog}
                 setVisible={setShowDialog}
                 title={'User Filter'}
-                style={{ padding: 20, width: Dimensions.get('window').width - 50, maxHeight: 500, borderRadius: 10 }}
+                style={{ padding: 20, width: Dimensions.get('window').width - 50, maxHeight: 500, borderRadius: 10, backgroundColor: '#fff' }}
             >
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <RadioButtonRN

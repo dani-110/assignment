@@ -2,12 +2,14 @@ import logoPurple from '../images/Twilior-Purple.png';
 import logoBlack from '../images/Twilior-Black.png';
 import logoWhite from '../images/Twilior-White.png';
 import checkList from '../images/checklist.png'
+import contacts from '../images/contacts.png'
 
 export const Images = {
     logoPurple,
     logoWhite,
     logoBlack,
-    checkList
+    checkList,
+    contacts
 }
 
 

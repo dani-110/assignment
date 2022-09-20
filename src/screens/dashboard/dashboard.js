@@ -19,9 +19,8 @@ export const Dashboard = (props) => {
         return moment().calendar({
             sameDay: '[Today]',
             lastDay: '[Yesterday]',
-            nextDay: '[Tomorrow]',
-            lastWeek: 'ddd',
-            sameElse: 'ddd'
+            lastWeek: 'MMM Do, YYYY',
+            sameElse: 'MMM Do, YYYY'
         })
     }
     return (

@@ -54,7 +54,7 @@ export const TwilioConfigStory = (props) => {
                                 {inputs()}
                             </View>
                             <View style={{ flex: 1, alignItems: 'center', }}>
-                                <DoneButton func={setTwilioConfig} text={'PROCEED'} colors={['#9C00FF', '#9C00FF']} style={{ width: hp('20%') }} />
+                                <DoneButton func={gotoTwilioConfigNum} text={'PROCEED'} colors={['#9C00FF', '#9C00FF']} style={{ width: hp('20%') }} />
                             </View>
 
                         </View >

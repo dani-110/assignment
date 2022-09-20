@@ -7,13 +7,17 @@ import { Platform, Text, TouchableOpacity } from 'react-native';
 import { Colors } from '../../../../constants/colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Icons } from '../../../../assets/assetsPath';
-
+import { infoValue } from '../../store';
+import { useDispatch, useSelector } from 'react-redux'
 
 const Stack = createNativeStackNavigator();
 
 export const SmsStack = (props) => {
-    useEffect(() => {
-    }, [])
+    const infoSelector = useSelector((state) => {
+        return state.infoReducer.isInfo
+    })
+
+    const dispatch = useDispatch()
     return (
         <Stack.Navigator
             screenOptions={{
@@ -33,11 +37,7 @@ export const SmsStack = (props) => {
                         onPress={() => props.navigation.goBack()}
                         style={{ flexDirection: "row", alignItems: 'center' }}
                     >
-                        <Icon
-                            name={'arrow-back-ios'}
-                            size={25}
-                            color={'#000'}
-                        />
+                        <Icon name='arrow-back-ios' size={20} color={'#000'} />
                     </TouchableOpacity>
                 ),
                 headerRight: () => (
@@ -64,7 +64,7 @@ export const SmsStack = (props) => {
                 ),
                 headerRight: () => (
                     <TouchableOpacity
-
+                        onPress={() => dispatch(infoValue(infoSelector ? false : true))}
                         style={{ flexDirection: "row", alignItems: 'center' }}
                     >
                         <Icons.Info width={20} height={20} fill={"#000"} />

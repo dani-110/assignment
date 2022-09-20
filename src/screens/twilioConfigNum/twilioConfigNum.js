@@ -26,7 +26,7 @@ export const TwilioConfigNum = (props) => {
 
     useState(() => {
         console.log(params.email, params.number)
-        params.number.map((e, i) => {
+        params?.number?.map((e, i) => {
             items.push({
                 label: e['Phone' + (i + 1)],
                 value: e['Phone' + (i + 1)]
@@ -48,7 +48,7 @@ export const TwilioConfigNum = (props) => {
     const setTwilioConfig = async () => {
         console.log('dsadsa', value)
         const param = {
-            ...params.data,
+            ...params?.data,
             "phone": value
 
         }
