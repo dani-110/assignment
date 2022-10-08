@@ -9,7 +9,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { Player } from '../../shared/components/Player/player';
 import { MsgInput } from '../../shared/components/MsgInput/msgInput';
 import { ChatBubble } from '../../shared/components/chatBubble/chatBubble';
-import SearchBar from "react-native-dynamic-search-bar";
+// import SearchBar from "react-native-dynamic-search-bar";
 import { FlatList } from 'react-native';
 
 export const ChatStory = (props) => {
@@ -65,7 +65,7 @@ export const ChatStory = (props) => {
                 <Text>To:</Text>
                 
             </View> */}
-            {newChat ?
+            {/* {newChat ?
                 <SearchBar
                     placeholder=""
                     // onPress={() => alert("onPress")}
@@ -74,7 +74,7 @@ export const ChatStory = (props) => {
                         <Text>TO:</Text>
                     )}
                 /> : null
-            }
+            } */}
             <ScrollView style={{ flex: 1 }}>
                 {!newChat ?
                     messages.map((item, index) => (
