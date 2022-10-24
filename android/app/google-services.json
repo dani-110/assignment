@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "570988243687",
+    "project_id": "twilioreactapp-6aea0",
+    "storage_bucket": "twilioreactapp-6aea0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570988243687:android:a6d53dd73dcee97c079042",
+        "android_client_info": {
+          "package_name": "com.daniyaltest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "570988243687-ddat7kk50cq43ltads8tmdj08qv5mqs5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.daniyaltest",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "570988243687-s6vmvf4emevdj1vrei8gbqcuno773j09.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD33bXT_RBacBbRVEDM0wDkz5ifVmWvd-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "570988243687-s6vmvf4emevdj1vrei8gbqcuno773j09.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
