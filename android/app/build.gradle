@@ -81,6 +81,27 @@ project.ext.react = [
     enableHermes: false,  // clean and rebuild if changing
 ]
 
+ext.playCustomRingback = {
+    def playCustomRingback  = System.getenv("playCustomRingback");
+
+    if (playCustomRingback == null) {
+        logger.log(LogLevel.INFO, "Could not locate playCustomRingback environment variable. " +
+                "Trying local.properties")
+        Properties properties = new Properties()
+        if (project.rootProject.file('local.properties').exists()) {
+            properties.load(project.rootProject.file('local.properties').newDataInputStream())
+            playCustomRingback = properties.getProperty('playCustomRingback')
+        }
+    }
+
+    if (playCustomRingback == null) {
+        playCustomRingback = false
+    }
+
+    return playCustomRingback;
+}
+
+
 apply from: "../../node_modules/react-native/react.gradle"
 
 /**
@@ -156,6 +177,7 @@ android {
     }
     buildTypes {
         debug {
+            buildConfigField("boolean", "playCustomRingback", "${playCustomRingback()}")
             signingConfig signingConfigs.debug
             if (nativeArchitectures) {
                 ndk {
@@ -169,6 +191,7 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            buildConfigField("boolean", "playCustomRingback", "${playCustomRingback()}")
         }
     }
 
@@ -198,6 +221,16 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+
+    //Added for Twilio
+    implementation "com.twilio:audioswitch:1.1.4"
+    implementation "com.twilio:voice-android:6.1.2"
+    implementation "com.google.android.material:material:1.4.0"
+    implementation "com.google.firebase:firebase-messaging:17.6.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation 'com.google.firebase:firebase-auth:21.0.5'
+
+    implementation platform('com.google.firebase:firebase-bom:30.1.0')
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'
@@ -235,3 +268,4 @@ project.ext.vectoricons = [
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+apply plugin: 'com.google.gms.google-services'

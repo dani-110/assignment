@@ -19,12 +19,14 @@ const App = () => {
     <View style={{flex:1, backgroundColor:'red', alignItems:'center', justifyContent:"center"}} >
       <Button title='Set Token' onPress={
         ()=>{
-          NativeModules.Bridge.setToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTS2VjMTQ4OTFhN2MxZjdhZWY1NzJjMTMwZDIyY2UxOTAyLTE2NjUyNjE0NTYiLCJncmFudHMiOnsiaWRlbnRpdHkiOiJhbGljZSIsInZvaWNlIjp7ImluY29taW5nIjp7ImFsbG93Ijp0cnVlfSwib3V0Z29pbmciOnsiYXBwbGljYXRpb25fc2lkIjoiQVBjNDY5NTExNDk2NjkxZGQ1YTcwN2FmM2UzMWM4M2RlYyJ9fX0sImlhdCI6MTY2NTI2MTQ1NiwiZXhwIjoxNjY1MjY1MDU2LCJpc3MiOiJTS2VjMTQ4OTFhN2MxZjdhZWY1NzJjMTMwZDIyY2UxOTAyIiwic3ViIjoiQUM3YjEzNGJlMTMyZWEwZjg1MmY3YmZjZWM4ZGQ3ZTc1MiJ9.Y29VYwuLfQIV91MPyrJfMuZK0yzPQNvWWTVYY1aEZ1Q")
+          NativeModules.Bridge.setToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTS2VjMTQ4OTFhN2MxZjdhZWY1NzJjMTMwZDIyY2UxOTAyLTE2NjY2NDYyMDIiLCJncmFudHMiOnsiaWRlbnRpdHkiOiJhbGljZSIsInZvaWNlIjp7ImluY29taW5nIjp7ImFsbG93Ijp0cnVlfSwib3V0Z29pbmciOnsiYXBwbGljYXRpb25fc2lkIjoiQVA1MWU5MjJlOTJkMjM5YjNjNmY5M2U5NzkxY2NhOWM5YiJ9fX0sImlhdCI6MTY2NjY0NjIwMiwiZXhwIjoxNjY2NjQ5ODAyLCJpc3MiOiJTS2VjMTQ4OTFhN2MxZjdhZWY1NzJjMTMwZDIyY2UxOTAyIiwic3ViIjoiQUM3YjEzNGJlMTMyZWEwZjg1MmY3YmZjZWM4ZGQ3ZTc1MiJ9.SLQ9_V6R6hQ6yRRQRE_LU6ZqNEprncc1OUxW1Sk8M1w")
         }
       }/>
       <Button title='Call' onPress={
         ()=>{
-          NativeModules.Bridge.sendCall("923312267487", true)
+          NativeModules.Bridge.sendCall("92443383112", true)
+          NativeModules.Bridge.testForEvent()
+          // NativeModules.Bridge.print();
         }
       }/>
     </View>
