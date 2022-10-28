@@ -37,6 +37,7 @@
     "react-native-material-textfield": "^0.16.1",
     "react-native-message-bar": "^2.1.0",
     "react-native-modalize": "^2.1.1",
+    "react-native-permissions": "^3.6.1",
     "react-native-progress": "^5.0.0",
     "react-native-raw-bottom-sheet": "^2.2.0",
     "react-native-reanimated": "^2.9.1",
