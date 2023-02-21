@@ -1,63 +1,52 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity, Modal, TouchableWithoutFeedback, TouchableHighlight } from 'react-native'
+import { View, TouchableOpacity, Modal, TouchableWithoutFeedback, TouchableHighlight, Animated } from 'react-native'
 
 import CalendarPicker from 'react-native-calendar-picker';
 import moment from 'moment'
 import { Colors } from '../../../constants/colors';
+import { Constent } from '../../../constants/AppStyles';
 
 export function CalenderView(props) {
 
     const {
-        calender,
-        setCalender,
-        setDate,
+        setStartDate,
+        setEndDate
     } = props
 
+    const onDateChange = (val, type) => {
+        setEndDate('')
+        if (type === 'END_DATE') {
+            setEndDate(val == null ? '' : getDay(val))
+        } else {
+            setStartDate(getDay(val))
+        }
+    }
+
+    function getDay(date) {
+        return moment(date).calendar({
+            sameDay: '[Today]',
+            lastDay: '[Yesterday]',
+            lastWeek: 'MMM Do, YYYY',
+            sameElse: 'MMM Do, YYYY'
+        })
+    }
 
     return (
-        <Modal
-            style={{ flex: 1 }}
-            animationType="slide"
-            transparent={true}
-            visible={calender}
-        >
-            <TouchableWithoutFeedback
-                onPress={() => setCalender(false)}>
-                <View style={{
-                    flex: 1, justifyContent: 'center',
-                    alignItems: 'center'
-                }}>
-                    <View elevation={5} style={{
-                        width: '95%', backgroundColor: '#fff',
-                        margin: 10, borderRadius: 10, shadowColor: "#000000",
-                        shadowOpacity: 0.8,
-                        shadowRadius: 2,
-                        shadowOffset: {
-                            height: 1,
-                            width: 1
-                        },
-                    }}>
-                        <TouchableHighlight>
-                            <CalendarPicker
-                                selectedDayTextColor="#FFFFFF"
-                                selectedDayColor="grey"
-                                headerWrapperStyle={{ padding: 20, justifyContent: 'space-between' }}
-                                customDayHeaderStyles={{ padding: 10, }}
-                                maxDate={new Date()}
-                                onDateChange={(e) => {
-                                    // setCalender(false)
-                                    setDate(moment(e).format("ddd, MMM D, YYYY"))
-                                }}
-                                allowRangeSelection={true}
-                                todayBackgroundColor={'#000'}
-                                selectedDayColor={Colors.purple}
-                            />
-                        </TouchableHighlight>
-                    </View>
-                </View>
-            </TouchableWithoutFeedback>
-        </Modal>
 
+        <View style={{ width: '100%', ...Constent.insideCenter }}>
+            <CalendarPicker
+                selectedDayTextColor="#FFFFFF"
+                selectedDayColor="grey"
+                headerWrapperStyle={{ padding: 10, justifyContent: 'space-between' }}
+                maxDate={new Date()}
+                onDateChange={onDateChange}
+                allowRangeSelection={true}
+                todayBackgroundColor={'#000'}
+                selectedDayColor={Colors.purple}
+                width={350}
+            // scrollable={true}
+            />
+        </View>
     )
 
 }

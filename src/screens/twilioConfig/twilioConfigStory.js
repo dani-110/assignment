@@ -21,7 +21,7 @@ export const TwilioConfigStory = (props) => {
         setSsid,
         authToken,
         setAuthToken,
-        gotoTwilioConfigNum
+        updateSSid
     } = props
 
     const inputs = () => (
@@ -53,7 +53,7 @@ export const TwilioConfigStory = (props) => {
                                 {inputs()}
                             </View>
                             <View style={{ flex: 1, alignItems: 'center', }}>
-                                <DoneButton func={gotoTwilioConfigNum} text={'PROCEED'} colors={['#9C00FF', '#9C00FF']} style={{ width: hp('20%') }} />
+                                <DoneButton func={updateSSid} text={'PROCEED'} colors={['#9C00FF', '#9C00FF']} style={{ width: hp('20%') }} />
                             </View>
 
                         </View >

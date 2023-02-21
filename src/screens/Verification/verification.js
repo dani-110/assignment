@@ -49,6 +49,9 @@ export const Verification = (props) => {
         if (params?.name == 'forgot') {
             navigation.navigate('NewPass', { updatePass: false, email: email })
         }
+        if (params?.name == 'connect') {
+            navigation.navigate('TwilioConfigNum')
+        }
     }
 
     const startBarCount = () => {
@@ -84,32 +87,32 @@ export const Verification = (props) => {
     }
 
     const verifyCode = async (text) => {
-        const params = {
-            "email": email,
-            "code": text
-        }
-        try {
-            await axios._postApi('/verifycode', params).then(res => {
-                console.log(res)
-                if (res.status == 200) {
-                    if (res?.data?.error) {
-                        setBorderColor('red')
-                        if (res.data['error'] == "bad code.") {
-                            Util.topAlertError("Invalid Code.")
-                        } else if (res.data['error'] == "code expired due to multiple wrong retries") {
-                            Util.topAlertError("You have tried multiple time. Please attempt in 30 sec.")
-                            startCounter()
-                            setCounterDisable(false)
-                        }
-                    } else {
+        // const params = {
+        //     "email": email,
+        //     "code": text
+        // }
+        // try {
+        //     await axios._postApi('/verifycode', params).then(res => {
+        //         console.log(res)
+        //         if (res.status == 200) {
+        //             if (res?.data?.error) {
+        //                 setBorderColor('red')
+        //                 if (res.data['error'] == "bad code.") {
+        //                     Util.topAlertError("Invalid Code.")
+        //                 } else if (res.data['error'] == "code expired due to multiple wrong retries") {
+        //                     Util.topAlertError("You have tried multiple time. Please attempt in 30 sec.")
+        //                     startCounter()
+        //                     setCounterDisable(false)
+        //                 }
+        //             } else {
                         gotoConnect()
-                    }
-                }
-            })
-        }
-        catch (e) {
-            console.log(e)
-        }
+        //             }
+        //         }
+        //     })
+        // }
+        // catch (e) {
+        //     console.log(e)
+        // }
 
     }
 

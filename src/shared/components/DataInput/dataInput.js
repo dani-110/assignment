@@ -39,7 +39,7 @@ export class DataInput extends Component {
             left: 0,
             top: this._animatedIsFocused.interpolate({
                 inputRange: [0, 1],
-                outputRange: [hp('1.5%'), -20],
+                outputRange: [hp('1.5%'), -25],
             }),
             fontSize: this._animatedIsFocused.interpolate({
                 inputRange: [0, 10],
@@ -59,17 +59,17 @@ export class DataInput extends Component {
             <>
                 {/* <Text style={{ width: '100%', color: 'red', textAlign: 'right', fontSize: 12 }}>{`*${this.props.error}`}</Text> */}
                 {/* !this.state.isFocused ? "#eae7e7" : "#362FBB" */}
-                <View style={{ width: '100%', borderRadius: 10, height: hp(Platform.OS == 'ios' ? '5%' : '6%'), borderColor: 'transparent', marginBottom: 12, backgroundColor: this.props.backgroundColor, ...Constent.insideCenter }}>
+                <View style={{ width: '100%', borderRadius: 10, height: hp(Platform.OS == 'ios' ? '5%' : '6%'), borderColor: 'transparent', marginBottom: 12, backgroundColor: this.props.backgroundColor, ...Constent.insideCenter, padding: 0 }}>
                     <Animated.Text style={labelStyle}>{this.props.placeholder}</Animated.Text>
                     {/* <Animated.Text style={[isFocused || value?.length > 0 ? onFocusStyle : onBlurStyle]}>{placeholder}</Animated.Text> */}
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                         <TextInput
                             secureTextEntry={this.props.secureTextEntry}
                             onChangeText={txt => this.props.onChang(txt)}
                             autoCapitalize='none'
                             value={this.props.value}
-                            style={{ ...this.props.heightStyle, ...this.props.style, flex: 1, height: '100%', fontSize: 15, color: "#000", paddingHorizontal: 10, }}
+                            style={{ ...this.props.heightStyle, ...this.props.style, flex: 1, height: 45, fontSize: 15, color: "#000", paddingHorizontal: 10, }}
                             onFocus={this.handleFocus}
                             onBlur={this.handleBlur}
                             numberOfLines={this.props.numberOfLines}
@@ -86,7 +86,7 @@ export class DataInput extends Component {
                                         name={this.props.secureTextEntry ? "visibility-off" : "visibility"}
                                         size={25}
                                         color={this.state.isFocused ? "#362FBB" : "#aaa"}
-                                        style={{ marginTop: hp(Platform.OS == 'ios' ? '0.5%' : '1.5%'), marginRight: 5 }}
+                                        style={{ marginRight: 5 }}
                                     />
                                 </TouchableWithoutFeedback>
                                 : null

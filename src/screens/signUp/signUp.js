@@ -1,11 +1,12 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { SignUpStory } from './signUpStory';
 import { useDispatch, useSelector } from 'react-redux'
 import axios from '../../@core/services/utilsfunctions'
 import _ from "lodash";
 import Util from '../../util';
 import { tokenValue } from '../../@core/services/store';
-
+import {AuthContext} from '../../context/authContext';
+import { NotificationBarContext } from '../../context/notificationBar';
 
 export const SignUp = (props) => {
     const {
@@ -18,9 +19,20 @@ export const SignUp = (props) => {
     const [domain, setDomain] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    // const [firstName, setFirstName] = useState("daniyal");
+    // const [lastName, setLastName] = useState("hussain");
+    // const [email, setEmail] = useState("daniyalhussain995@gmail.com");
+    // const [company, setCompany] = useState("twilior");
+    // const [domain, setDomain] = useState("");
+    // const [password, setPassword] = useState("123456789a");
+    // const [confirmPassword, setConfirmPassword] = useState("123456789a");
     const [isSelected, setIsSelected] = useState(false);
     const [secureTextEntry1, setSecureTextEntry1] = useState(true);
     const [secureTextEntry2, setSecureTextEntry2] = useState(true);
+
+
+  const {isLoading, register} = useContext(AuthContext);
+  const { showBar} = useContext(NotificationBarContext);
 
 
     const dispatch = useDispatch()
@@ -61,10 +73,12 @@ export const SignUp = (props) => {
         } else if (!Util.isEmailValid(email)) {
             Util.topAlertError("Email is not in correct format")
             return false
-        } else if (domain.length > 0 && !Util.isWebSiteValid(domain)) {
-            Util.topAlertError("Website is not in correct format")
-            return false
-        } else if (_.isEmpty(password)) {
+        }
+        //  else if (domain.length > 0 && !Util.isWebSiteValid(domain)) {
+        //     Util.topAlertError("Website is not in correct format")
+        //     return false
+        // }
+         else if (_.isEmpty(password)) {
             Util.topAlertError("Password is empty")
             return false
         } else if (password.length < 8) {
@@ -106,29 +120,30 @@ export const SignUp = (props) => {
 
     }
     const signUp = async () => {
-        if (validateForm()) {
-            const params = {
-                "email": email,
-                "password": password,
-                "firstname": firstName,
-                "lastname": lastName,
-                "company": company,
-                "website": domain
-            }
-            try {
-                await axios._postApi('/signup', params).then(res => {
-                    console.log(res, 'response of resgister')
-                    if (res.status == 200) {
+        // if (validateForm()) {
+        //     const params = {
+        //         "email": email,
+        //         "password": password,
+        //         "firstname": firstName,
+        //         "lastname": lastName,
+        //         "company": company,
+        //         "website": domain
+        //     }
+        //     try {
+        //         register(params).then((res)=>{
+        //             console.log(res, 'resgister res')
+        //             if(res.status == 200){
                         gotoVerification()
-                    } else {
-                        Util.topAlertError(res.data.error)
-                    }
-                })
-            }
-            catch (e) {
-                console.log(e)
-            }
-        }
+        //             }
+        //             if(res.status==403){
+        //                 showBar(res.data.error,'error')
+        //             }
+        //         })
+        //     }
+        //     catch (e) {
+        //         console.log(e)
+        //     }
+        // }
     }
 
     return (

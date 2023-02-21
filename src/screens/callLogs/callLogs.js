@@ -14,10 +14,11 @@ export const CallLogs = (props) => {
     } = route
 
     const [activeSections, setActiveSections] = useState([-1])
-    const modalizeRef = useRef(null);
 
     const [filterType, setFilterType] = useState(['All', 'Missed', 'Incoming', 'Outgoing', 'Voicemail'])
     const [isSelectedFilter, setIsSelectedFilter] = useState('All')
+
+    const [showDialog, setShowDialog] = useState(false)
 
     const dispatch = useDispatch()
     const selector = useSelector((state) => {
@@ -25,16 +26,12 @@ export const CallLogs = (props) => {
     })
 
     useEffect(() => {
-        selector ? onOpen() : onClose()
+        setShowDialog(selector)
     }, [selector])
 
-    const onOpen = () => {
-        modalizeRef.current?.open();
-    };
 
-    const onClose = () => {
-        dispatch(filterValue(false))
-        modalizeRef.current?.close();
+    const onClose = (val) => {
+        dispatch(filterValue(val))
     };
 
     const setFilterCheck = (i) => {
@@ -46,12 +43,12 @@ export const CallLogs = (props) => {
         <CallLogsStory
             activeSections={activeSections}
             setActiveSections={setActiveSections}
-            modalizeRef={modalizeRef}
-            onOpen={onOpen}
             onClose={onClose}
             filterType={filterType}
             isSelectedFilter={isSelectedFilter}
             setFilterCheck={setFilterCheck}
+            showDialog={showDialog}
+            setShowDialog={setShowDialog}
         />
     )
 }

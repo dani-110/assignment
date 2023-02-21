@@ -12,13 +12,11 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2F1B683D2E6C4A21B0F95414 /* libPods-DaniyalTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE2C78AF567CA043D0A9B24 /* libPods-DaniyalTest.a */; };
+		7034AF062982CED400770D1C /* TwilioVoice in Frameworks */ = {isa = PBXBuildFile; productRef = 7034AF052982CED400770D1C /* TwilioVoice */; };
+		709942962982CB8E00DBE475 /* TwilioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849405FF28F1FB2600111DAD /* TwilioManager.swift */; };
 		739049CE4A9B3AACB21A83A3 /* libPods-DaniyalTest-DaniyalTestTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADDBAF406D2AC84E7297A2BC /* libPods-DaniyalTest-DaniyalTestTests.a */; };
 		84516E6428F0883300E637F1 /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84516E6328F0883300E637F1 /* Bridge.swift */; };
 		84516E6628F088A000E637F1 /* Bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 84516E6528F088A000E637F1 /* Bridge.m */; };
-		849405FE28F1FADE00111DAD /* TwilioVoice.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849405FD28F1FADE00111DAD /* TwilioVoice.xcframework */; };
-		8494060028F1FB2600111DAD /* TwilioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849405FF28F1FB2600111DAD /* TwilioManager.swift */; };
-		8494060128F1FBA300111DAD /* TwilioVoice.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849405FD28F1FADE00111DAD /* TwilioVoice.xcframework */; };
-		8494060228F1FBA300111DAD /* TwilioVoice.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 849405FD28F1FADE00111DAD /* TwilioVoice.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FAD0F42628B7953D00E5B981 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD0F42528B7953D00E5B981 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -31,20 +29,6 @@
 			remoteInfo = DaniyalTest;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		8494060328F1FBA300111DAD /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				8494060228F1FBA300111DAD /* TwilioVoice.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		00E356EE1AD99517003FC87E /* DaniyalTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DaniyalTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,7 +46,6 @@
 		84516E6228F0883200E637F1 /* DaniyalTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DaniyalTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		84516E6328F0883300E637F1 /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		84516E6528F088A000E637F1 /* Bridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bridge.m; sourceTree = "<group>"; };
-		849405FD28F1FADE00111DAD /* TwilioVoice.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = TwilioVoice.xcframework; sourceTree = "<group>"; };
 		849405FF28F1FB2600111DAD /* TwilioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwilioManager.swift; sourceTree = "<group>"; };
 		8494060428F2176B00111DAD /* DaniyalTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = DaniyalTest.entitlements; path = DaniyalTest/DaniyalTest.entitlements; sourceTree = "<group>"; };
 		AAE2C78AF567CA043D0A9B24 /* libPods-DaniyalTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DaniyalTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,7 +60,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				849405FE28F1FADE00111DAD /* TwilioVoice.xcframework in Frameworks */,
 				739049CE4A9B3AACB21A83A3 /* libPods-DaniyalTest-DaniyalTestTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,8 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8494060128F1FBA300111DAD /* TwilioVoice.xcframework in Frameworks */,
 				2F1B683D2E6C4A21B0F95414 /* libPods-DaniyalTest.a in Frameworks */,
+				7034AF062982CED400770D1C /* TwilioVoice in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +114,6 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				849405FD28F1FADE00111DAD /* TwilioVoice.xcframework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				AAE2C78AF567CA043D0A9B24 /* libPods-DaniyalTest.a */,
 				ADDBAF406D2AC84E7297A2BC /* libPods-DaniyalTest-DaniyalTestTests.a */,
@@ -218,13 +199,15 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				86EA04389E471A1A71053F32 /* [CP] Embed Pods Frameworks */,
 				E80BDC18C757F57BDBA8CD98 /* [CP] Copy Pods Resources */,
-				8494060328F1FBA300111DAD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = DaniyalTest;
+			packageProductDependencies = (
+				7034AF052982CED400770D1C /* TwilioVoice */,
+			);
 			productName = DaniyalTest;
 			productReference = 13B07F961A680F5B00A75B9A /* DaniyalTest.app */;
 			productType = "com.apple.product-type.application";
@@ -255,6 +238,9 @@
 				Base,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
+			packageReferences = (
+				7034AF042982CED400770D1C /* XCRemoteSwiftPackageReference "twilio-voice-ios" */,
+			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -448,7 +434,7 @@
 				84516E6628F088A000E637F1 /* Bridge.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				8494060028F1FB2600111DAD /* TwilioManager.swift in Sources */,
+				709942962982CB8E00DBE475 /* TwilioManager.swift in Sources */,
 				84516E6428F0883300E637F1 /* Bridge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,9 +511,12 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DaniyalTest/DaniyalTest.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MNA2S4PNF2;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = MNA2S4PNF2;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = DaniyalTest/Info.plist;
@@ -536,6 +525,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -543,10 +533,15 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.ew.test;
 				PRODUCT_NAME = DaniyalTest;
-				PROVISIONING_PROFILE_SPECIFIER = "Test App Dev Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Test App Dev Profile";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "DaniyalTest-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -557,9 +552,12 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DaniyalTest/DaniyalTest.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MNA2S4PNF2;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = MNA2S4PNF2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = DaniyalTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -567,6 +565,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -574,9 +573,14 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.ew.test;
 				PRODUCT_NAME = DaniyalTest;
-				PROVISIONING_PROFILE_SPECIFIER = "Test App Dev Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Test App Dev Profile";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "DaniyalTest-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -614,7 +618,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -680,7 +684,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -737,6 +741,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7034AF042982CED400770D1C /* XCRemoteSwiftPackageReference "twilio-voice-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twilio/twilio-voice-ios";
+			requirement = {
+				branch = Releases;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7034AF052982CED400770D1C /* TwilioVoice */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7034AF042982CED400770D1C /* XCRemoteSwiftPackageReference "twilio-voice-ios" */;
+			productName = TwilioVoice;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { DialerStory } from './dialerStory';
 import { useDispatch, useSelector } from 'react-redux'
-
+import { LogBox, YellowBox, NativeModules, NativeAppEventEmitter, Button, View} from 'react-native';
+import {check, PERMISSIONS, RESULTS,requestMultiple} from 'react-native-permissions';
 
 export const Dialer = (props) => {
     const {
@@ -12,6 +13,8 @@ export const Dialer = (props) => {
     const [cursor, setCursor] = useState({})
     const [isAnim, setIsAnim] = useState(false)
     const [isDialerOpen, setIsDialerOpen] = useState(true)
+
+
 
     const dialNumber = (text) => {
         setNumber(number + text)

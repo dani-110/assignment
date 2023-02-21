@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import { LoginStory } from './loginStory';
 import { useDispatch, useSelector } from 'react-redux'
 import { CommonActions } from "@react-navigation/native";
@@ -8,19 +8,26 @@ import Util from '../../util';
 import { tokenValue, UserValue } from '../../@core/services/store';
 
 import jwt_decode from "jwt-decode";
+import {AuthContext} from '../../context/authContext';
 
+import { NotificationBarContext } from '../../context/notificationBar';
 
 export const Login = (props) => {
     const {
         navigation
     } = props
 
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("daniyalhussain995@gmail.com");
-    const [password, setPassword] = useState("123456789a");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    // const [email, setEmail] = useState("daniyalhussain995@gmail.com");
+    // const [password, setPassword] = useState("123456789a");
     const [isSelected, setIsSelected] = useState(false);
     const [secureTextEntry, setSecureTextEntry] = useState(true);
+
+
+  const {isLoading, login} = useContext(AuthContext);
+
+  const { showBar} = useContext(NotificationBarContext);
 
     const dispatch = useDispatch()
     const selector = useSelector((state) => {
@@ -81,31 +88,28 @@ export const Login = (props) => {
 
     }
 
-    const login = async () => {
-        if (validateForm()) {
-            const params = {
-                "email": email,
-                "password": password,
-            }
-            try {
-                await axios._postApi('/login', params).then(res => {
-                    console.log(res)
-                    if (res.status == 200) {
-                        dispatch(UserValue({
-                            user: res.data,
-                            isLogin: true
-                        }))
-                        dispatch(tokenValue(res.data.token))
-                        gotoDashboard()
-                    } else {
-                        Util.topAlertError(res.data.error)
-                    }
-                })
-            }
-            catch (e) {
-                console.log(e)
-            }
-        }
+    const loginx = async () => {
+        gotoDashboard()
+        // if (validateForm()) {
+        //     const params = {
+        //         "email": email,
+        //         "password": password,
+        //     }
+        //     try {
+        //         login(params).then((res)=>{
+        //             if(res.status==405){
+        //                 showBar(res.data.error,'error')
+        //             }
+        //             if(res.status==200){
+        //                 if(res.data.hasOwnProperty('error'))
+        //                 showBar(res.data.error,'error')
+        //             }
+        //         })
+        //     }
+        //     catch (e) {
+        //         console.log(e)
+        //     }
+        // }
     }
 
     return (
@@ -120,7 +124,7 @@ export const Login = (props) => {
             getSelected={(e) => setIsSelected(e)}
             gotoSignUp={gotoSignUp}
             gotoForgot={gotoForgot}
-            login={login}
+            login={loginx}
         />
     )
 

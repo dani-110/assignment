@@ -1,5 +1,5 @@
 //import liraries
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Image } from 'react-native';
 import { DrawerItem, DrawerContentScrollView, DrawerContent } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -13,9 +13,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { UserValue } from '../../store';
 import { Icons, Images } from '../../../../assets/assetsPath';
 
+import {AuthContext} from '../../../../context/authContext';
+
 // create a component
 export const DrawerView = (props) => {
-
+    const {logout} = useContext(AuthContext);
     const {
         navigation
     } = props
@@ -33,6 +35,7 @@ export const DrawerView = (props) => {
                 routes: [{ name: "AuthStack" }],
             })
         );
+        // logout()
     }
     return (
         <View style={styles.contentMain}>

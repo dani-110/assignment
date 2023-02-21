@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Animated, Easing, Text, FlatList, SafeAreaView, Platform, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, TouchableOpacity, TextInput } from 'react-native'
+import { View, Animated, NativeModules, Text, FlatList, SafeAreaView, Platform, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, TouchableOpacity, TextInput } from 'react-native'
 import { styles } from './dialer.styles'
 import { Constent } from '../../constants/AppStyles'
 import { Colors } from '../../constants/colors';
@@ -8,6 +8,7 @@ import { Dialer } from '../../shared/components/dialer/dialer';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { BkcView } from '../../shared/components/BkcView/bkcView';
+import { DialerDots } from '../../shared/components/dailerDots/dialerDots';
 
 export const DialerStory = (props) => {
     const {
@@ -23,53 +24,54 @@ export const DialerStory = (props) => {
     } = props
 
     let height = new Animated.Value(hp('0%'))
+    let rotate = new Animated.Value(hp('0%'))
 
     let point1 = new Animated.Value(1)
     let point2 = new Animated.Value(1)
     let point3 = new Animated.Value(1)
     let point4 = new Animated.Value(1)
     const applyAnimation = () => {
-        if (number) {
-            Animated.parallel([
-                Animated.loop(
-                    Animated.sequence([
-                        Animated.timing(point1, {
-                            toValue: 0.2,
-                            duration: 300
-                        }),
-                        Animated.timing(point2, {
-                            toValue: 0.2,
-                            duration: 300
-                        }),
-                        Animated.timing(point3, {
-                            toValue: 0.2,
-                            duration: 300
-                        }),
-                        Animated.timing(point4, {
-                            toValue: 0.2,
-                            duration: 300
-                        }),
-                    ]),
-                    {
-                        iterations: point1 + 1
-                    }
-                ),
-                Animated.timing(height, {
-                    toValue: hp('65%'),
-                    duration: 250
-                })
-            ]).start((res) => {
-                makeCall()
-                console.log(res)
-            })
-        }
+        Animated.timing(height, {
+            toValue: hp('65%'),
+            duration: 250
+        }).start(makeCall)
+        // makeCall()
+
+        // if (number) {
+        //     Animated.parallel([
+        //         Animated.loop(
+        //             Animated.sequence([
+        //                 Animated.timing(point1, {
+        //                     toValue: 0.2,
+        //                     duration: 300
+        //                 }),
+        //                 Animated.timing(point2, {
+        //                     toValue: 0.2,
+        //                     duration: 300
+        //                 }),
+        //                 Animated.timing(point3, {
+        //                     toValue: 0.2,
+        //                     duration: 300
+        //                 }),
+        //                 Animated.timing(point4, {
+        //                     toValue: 0.2,
+        //                     duration: 300
+        //                 }),
+        //             ]),
+        //             {
+        //                 iterations: point1 + 1
+        //             }
+        //         ),
+        //         Animated.timing(height, {
+        //             toValue: hp('65%'),
+        //             duration: 250
+        //         }),
+
+        //     ]).start(makeCall)
+        // }
     }
 
     const callEnd = () => {
-        point1.stopAnimation()
-        point2.stopAnimation()
-        point3.stopAnimation()
-        point4.stopAnimation()
         Animated.timing(height, {
             toValue: hp('0%'),
             duration: 250
@@ -78,6 +80,7 @@ export const DialerStory = (props) => {
 
     const makeCall = () => {
         setIsAnim(isAnim ? false : true)
+       
     }
     const openDialer = (val) => {
         Animated.timing(height, {
@@ -100,12 +103,11 @@ export const DialerStory = (props) => {
                     <View style={{ flex: 1 }}>
                         <View style={{ alignItems: 'center' }}>
                             <Text style={{ color: Colors.headerColor, fontSize: 25 }}>Dialing...</Text>
-                            <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: 20 }}>
-                                <Animated.View style={{ height: 15, width: 15, backgroundColor: '#fff', borderRadius: 100, margin: 2, opacity: point1 }}></Animated.View>
-                                <Animated.View style={{ height: 15, width: 15, backgroundColor: '#fff', borderRadius: 100, margin: 2, opacity: point2 }}></Animated.View>
-                                <Animated.View style={{ height: 15, width: 15, backgroundColor: '#fff', borderRadius: 100, margin: 2, opacity: point3 }}></Animated.View>
-                                <Animated.View style={{ height: 15, width: 15, backgroundColor: '#fff', borderRadius: 100, margin: 2, opacity: point4 }}></Animated.View>
-                            </View>
+
+{
+    isAnim? <DialerDots isAnim={isAnim} />:null
+}
+                           
                         </View>
 
                         <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 20 }}>
@@ -146,7 +148,7 @@ export const DialerStory = (props) => {
                     <Text style={{ color: Colors.headerColor, fontSize: 35, fontWeight: '700' }}>{number}</Text>
                 </View>
             </View>
-            {inputView()}
+          {inputView()}
             <Dialer
                 isAnim={isAnim}
                 dialNumber={dialNumber}
@@ -154,6 +156,7 @@ export const DialerStory = (props) => {
                 applyAnimation={() => { applyAnimation() }}
                 callEnd={callEnd}
                 openDialer={openDialer}
+                makeCall={makeCall}
                 isDialerOpen={isDialerOpen}
             />
         </View>

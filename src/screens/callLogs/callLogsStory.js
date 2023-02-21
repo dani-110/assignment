@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { View, Text, Modal, SafeAreaView, Platform, TouchableOpacity, KeyboardAvoidingView, Keyboard } from 'react-native'
+import { View, Text, Modal, SafeAreaView, Platform, TouchableOpacity, KeyboardAvoidingView, Keyboard, Dimensions } from 'react-native'
 import { styles } from './callLogs.styles'
 import { Constent } from '../../constants/AppStyles'
 import { Colors } from '../../constants/colors';
@@ -9,6 +9,10 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { Player } from '../../shared/components/Player/player';
 import { Icons } from '../../assets/assetsPath';
 import { Modalize } from 'react-native-modalize';
+import { DialogBox } from '../../shared/components/dialogBox/dialogBox';
+
+import RadioButtonRN from 'radio-buttons-react-native';
+import { DoneButton } from '../../shared/components/DoneButton/doneButton';
 
 export const CallLogsStory = (props) => {
     const {
@@ -20,9 +24,29 @@ export const CallLogsStory = (props) => {
         selector,
         filterType,
         isSelectedFilter,
-        setFilterCheck
+        setFilterCheck,
+        showDialog,
+        setShowDialog
+
     } = props
 
+    const data = [
+        {
+            label: 'All'
+        },
+        {
+            label: 'Missed',
+        },
+        {
+            label: 'Incoming',
+        },
+        {
+            label: 'Outgoing',
+        },
+        {
+            label: 'Voicemail'
+        }
+    ];
 
     const obj = [
         {
@@ -139,8 +163,43 @@ export const CallLogsStory = (props) => {
                     sectionContainerStyle={{ borderBottomWidth: 1, borderBottomColor: '#A4A4A4' }}
                 />
 
+
             </View>
-            <Modalize
+
+            <DialogBox
+                visible={showDialog}
+                setVisible={onClose}
+                title={'Filter'}
+                style={{ padding: 20, width: Dimensions.get('window').width - 50, maxHeight: 500, borderRadius: 10 }}
+            >
+                <RadioButtonRN
+                    data={data}
+                    initial={1}
+                    selectedBtn={(e) => console.log(e)}
+                    circleSize={10}
+                    activeColor={'#dec1f075'}
+                    boxActiveBgColor={'#dec1f075'}
+                    icon={
+                        <Icon
+                            name="check-circle"
+                            size={18}
+                            color={Colors.purple}
+                            style={{ height: 18, width: 18 }}
+                        />
+                    }
+                />
+                <View style={{ ...Constent.insideCenter, marginTop: hp('5%') }}>
+                    <DoneButton func={() => onClose(false)} colors={['#000', '#000']} text={'Apply'} style={{ marginBottom: 20, width: '60%' }} />
+                </View>
+                < TouchableOpacity onPress={() => onClose(false)} style={{
+                    ...Constent.insideCenter,
+                    borderRadius: 100, padding: 5, position: 'absolute', top: 10, zIndex: 100, right: 10, transform: [{ rotate: '45deg' }]
+                }}>
+                    <Icons.Plus width={15} height={15} fill={"#000"} />
+                </TouchableOpacity>
+            </DialogBox>
+
+            {/* <Modalize
                 scrollViewProps={{ showsVerticalScrollIndicator: false }}
                 handlePosition="inside"
                 withReactModal={true}
@@ -149,8 +208,10 @@ export const CallLogsStory = (props) => {
                 modalHeight={hp('40%')}
                 ref={modalizeRef}
                 childrenStyle={{ flex: 1, ...Constent.insideCenter }}
+                disableScrollIfPossible={true}
+
             >
-                <View style={{ flex: 1, margin: 50 }}>
+                <View style={{ flex: 1, margin: 20 }}>
                     {
                         filterType.map((item, i) => (
                             <TouchableOpacity onPress={() => { setFilterCheck(i) }} style={{ margin: 10, borderWidth: 1, borderRadius: 10, padding: 5, borderColor: item == isSelectedFilter ? Colors.purple : '#000' }}>
@@ -159,7 +220,12 @@ export const CallLogsStory = (props) => {
                         ))
                     }
                 </View>
-            </Modalize>
+            </Modalize> */}
+            {/* <View style={{ position: 'absolute', bottom: 50, right: 50, backgroundColor: Colors.purple, height: 50, width: 50, borderRadius: 100, }}>
+                <TouchableOpacity style={{ flex: 1, ...Constent.insideCenter }} onPress={() => setShowDialog(true)}>
+                    <Icon name='filter-list' size={20} color={'#fff'} />
+                </TouchableOpacity>
+            </View> */}
         </SafeAreaView>
     )
 }

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'https://ovsccserver.kozow.com:8002/api/client';
+const baseUrl = 'http://127.0.0.1:7999/api/client';
 const instance = axios.create({
   baseURL: baseUrl,
   timeout: 1000,
