@@ -11,8 +11,6 @@ export const TwilioConfig = (props) => {
     } = props
     const [ssid, setSsid] = useState("");
     const [authToken, setAuthToken] = useState('');
-    // const [ssid, setSsid] = useState("AC7b134be132ea0f852f7bfcec8dd7e752");
-    // const [authToken, setAuthToken] = useState('e68e95c825c6e2020982cf9bd5107773');
 
     useState(() => {
     }, [])
