@@ -12,6 +12,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2F1B683D2E6C4A21B0F95414 /* libPods-DaniyalTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE2C78AF567CA043D0A9B24 /* libPods-DaniyalTest.a */; };
+		7015FAC229A73AC300E66ED7 /* TwilioVoice.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7015FAC129A73AC300E66ED7 /* TwilioVoice.xcframework */; };
+		7015FAC329A73AC300E66ED7 /* TwilioVoice.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7015FAC129A73AC300E66ED7 /* TwilioVoice.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7034AF062982CED400770D1C /* TwilioVoice in Frameworks */ = {isa = PBXBuildFile; productRef = 7034AF052982CED400770D1C /* TwilioVoice */; };
 		709942962982CB8E00DBE475 /* TwilioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849405FF28F1FB2600111DAD /* TwilioManager.swift */; };
 		739049CE4A9B3AACB21A83A3 /* libPods-DaniyalTest-DaniyalTestTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADDBAF406D2AC84E7297A2BC /* libPods-DaniyalTest-DaniyalTestTests.a */; };
@@ -30,6 +32,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		7015FAC429A73AC300E66ED7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7015FAC329A73AC300E66ED7 /* TwilioVoice.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		00E356EE1AD99517003FC87E /* DaniyalTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DaniyalTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -43,6 +59,7 @@
 		20034DF2F6F9A71BCB48DEB9 /* Pods-DaniyalTest-DaniyalTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DaniyalTest-DaniyalTestTests.debug.xcconfig"; path = "Target Support Files/Pods-DaniyalTest-DaniyalTestTests/Pods-DaniyalTest-DaniyalTestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		445E619414688278A38521CE /* Pods-DaniyalTest-DaniyalTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DaniyalTest-DaniyalTestTests.release.xcconfig"; path = "Target Support Files/Pods-DaniyalTest-DaniyalTestTests/Pods-DaniyalTest-DaniyalTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		4DEFEFF00F0DF856C3D47A1D /* Pods-DaniyalTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DaniyalTest.release.xcconfig"; path = "Target Support Files/Pods-DaniyalTest/Pods-DaniyalTest.release.xcconfig"; sourceTree = "<group>"; };
+		7015FAC129A73AC300E66ED7 /* TwilioVoice.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TwilioVoice.xcframework; path = "../../../Downloads/TwilioVoice.xcframework (1)/TwilioVoice.xcframework"; sourceTree = "<group>"; };
 		84516E6228F0883200E637F1 /* DaniyalTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DaniyalTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		84516E6328F0883300E637F1 /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		84516E6528F088A000E637F1 /* Bridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bridge.m; sourceTree = "<group>"; };
@@ -70,6 +87,7 @@
 			files = (
 				2F1B683D2E6C4A21B0F95414 /* libPods-DaniyalTest.a in Frameworks */,
 				7034AF062982CED400770D1C /* TwilioVoice in Frameworks */,
+				7015FAC229A73AC300E66ED7 /* TwilioVoice.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +132,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7015FAC129A73AC300E66ED7 /* TwilioVoice.xcframework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				AAE2C78AF567CA043D0A9B24 /* libPods-DaniyalTest.a */,
 				ADDBAF406D2AC84E7297A2BC /* libPods-DaniyalTest-DaniyalTestTests.a */,
@@ -199,6 +218,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				86EA04389E471A1A71053F32 /* [CP] Embed Pods Frameworks */,
 				E80BDC18C757F57BDBA8CD98 /* [CP] Copy Pods Resources */,
+				7015FAC429A73AC300E66ED7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -520,6 +540,8 @@
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = DaniyalTest/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Twilior;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -560,6 +582,8 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = MNA2S4PNF2;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = DaniyalTest/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Twilior;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
