@@ -12,6 +12,8 @@ target 'DaniyalTest' do
     :hermes_enabled => false
   )
 
+  pod 'react-native-contacts', :path => '../node_modules/react-native-contacts'
+
   target 'DaniyalTestTests' do
     inherit! :complete
     # Pods for testing

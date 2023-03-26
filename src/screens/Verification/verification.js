@@ -87,38 +87,38 @@ export const Verification = (props) => {
     }
 
     const verifyCode = async (text) => {
-        // const params = {
-        //     "email": email,
-        //     "code": text
-        // }
-        // try {
-        //     await axios._postApi('/verifycode', params).then(res => {
-        //         console.log(res)
-        //         if (res.status == 200) {
-        //             if (res?.data?.error) {
-        //                 setBorderColor('red')
-        //                 if (res.data['error'] == "bad code.") {
-        //                     Util.topAlertError("Invalid Code.")
-        //                 } else if (res.data['error'] == "code expired due to multiple wrong retries") {
-        //                     Util.topAlertError("You have tried multiple time. Please attempt in 30 sec.")
-        //                     startCounter()
-        //                     setCounterDisable(false)
-        //                 }
-        //             } else {
+        const params = {
+            "email": email,
+            "code": text
+        }
+        try {
+            await axios._postApi('client/verifycode', params).then(res => {
+                console.log(res)
+                if (res.status == 200) {
+                    if (res?.data?.error) {
+                        setBorderColor('red')
+                        if (res.data['error'] == "bad code.") {
+                            Util.topAlertError("Invalid Code.")
+                        } else if (res.data['error'] == "code expired due to multiple wrong retries") {
+                            Util.topAlertError("You have tried multiple time. Please attempt in 30 sec.")
+                            startCounter()
+                            setCounterDisable(false)
+                        }
+                    } else {
                         gotoConnect()
-        //             }
-        //         }
-        //     })
-        // }
-        // catch (e) {
-        //     console.log(e)
-        // }
+                    }
+                }
+            })
+        }
+        catch (e) {
+            console.log(e)
+        }
 
     }
 
     const codeResend = async () => {
         try {
-            await axios._postApi('/resetcode', params).then(res => {
+            await axios._postApi('client/resetcode', params).then(res => {
                 console.log(res, 'reset code')
                 if (res.status = 200) {
                     startBarCount()

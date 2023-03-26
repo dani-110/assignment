@@ -8,12 +8,13 @@ import { CallLogs, ConnectBusiness, ConnectWith, Conversation, Dialer, Verificat
 import { Colors } from '../../../constants/colors';
 import { SmsStack } from './smsStack';
 import { DrawerStack } from './drawerStack'
-import { Button, TouchableOpacity } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { filterValue } from '../store';
 import {AuthContext} from '../../../context/authContext';
 import { Contact } from '../../../screens/contacts/contact';
+import { Images } from '../../../assets/assetsPath';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -25,7 +26,6 @@ export const Routes = () => {
         return state.filterReducer.isFilter
     })
 
-    console.log(userInfo.token,"userInfo===?>")
 
     const dispatch = useDispatch()
     return (
@@ -45,7 +45,6 @@ export const Routes = () => {
                 <Stack.Screen name={'DashboardStack'} component={DrawerStack} options={{ headerShown: false }} />
                    )
                 }
-                <Stack.Screen name={'DashboardStack'} component={DrawerStack} options={{ headerShown: false }} />
                 <Stack.Screen name={'ForgotStack'} component={ForgotStack} options={{ headerShown: false }} />
                 <Stack.Screen name={'CallLogs'} component={CallLogs} options={{
                     title: 'Calling History',

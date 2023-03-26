@@ -40,7 +40,8 @@ export const SettingsStory = (props) => {
         existing,
         getExisting,
         secureTextEntry3,
-        toggleSecureEntry3
+        toggleSecureEntry3,
+        updateProfile
     } = props
 
     const header = (text) => (
@@ -211,7 +212,7 @@ export const SettingsStory = (props) => {
                     {passView()}
                     {dialogView()}
                     <View style={{ flex: 1, paddingVertical: 30, ...Constent.insideCenter }}>
-                        <DoneButton text={'Save'} colors={['#9C00FF', '#9C00FF']} style={{ width: '50%' }} />
+                        <DoneButton func={updateProfile} text={'Save'} colors={['#9C00FF', '#9C00FF']} style={{ width: '50%' }} />
                     </View>
                 </ScrollView>
             </KeyboardAvoidingView>

@@ -25,17 +25,17 @@ export const DrawerView = (props) => {
     const iconSize = 22
     const dispatch = useDispatch()
     const gotoLogin = () => {
-        dispatch(UserValue({
-            user: {},
-            isLogin: false
-        }))
-        navigation.dispatch(
-            CommonActions.reset({
-                index: 0,
-                routes: [{ name: "AuthStack" }],
-            })
-        );
-        // logout()
+        // dispatch(UserValue({
+        //     user: {},
+        //     isLogin: false
+        // }))
+        // navigation.dispatch(
+        //     CommonActions.reset({
+        //         index: 0,
+        //         routes: [{ name: "AuthStack" }],
+        //     })
+        // );
+        logout()
     }
     return (
         <View style={styles.contentMain}>

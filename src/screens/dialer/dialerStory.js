@@ -20,7 +20,8 @@ export const DialerStory = (props) => {
         isAnim,
         setIsAnim,
         isDialerOpen,
-        setIsDialerOpen
+        setIsDialerOpen,
+        callStart
     } = props
 
     let height = new Animated.Value(hp('0%'))
@@ -80,6 +81,7 @@ export const DialerStory = (props) => {
 
     const makeCall = () => {
         setIsAnim(isAnim ? false : true)
+        callStart()
        
     }
     const openDialer = (val) => {

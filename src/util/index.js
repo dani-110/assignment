@@ -1,5 +1,7 @@
 import { MessageBarManager } from "../../react-native-message-bar";
+import React, { useContext, useState } from 'react';
 
+import { NotificationBarContext } from '../context/notificationBar';
 const MESSAGE_TYPES = {
     INFO: "info",
     ERROR: "error",

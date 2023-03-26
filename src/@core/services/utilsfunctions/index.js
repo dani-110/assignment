@@ -8,6 +8,7 @@ const postData = async (url, data, token) => {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
     return await axios.post(url, data)
         .then((response) => {
+            console.log(response,'in success')
             return response
         }).catch((e) => {
             return e.response

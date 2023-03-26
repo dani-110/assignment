@@ -50,7 +50,7 @@ export const ConversationStory = (props) => {
 
     const mainView = (data, index) => {
         return (
-            <TouchableOpacity key={index} onPress={gotoChat} style={styles.main}>
+            <TouchableOpacity key={index} onPress={() => gotoChat(data)} style={styles.main}>
                 <View style={{ padding: hp('1%') }}>
                     <View>
                         <Text style={{ color: data.unread > 0 ? Colors.unread : null }}>{data.time}</Text>

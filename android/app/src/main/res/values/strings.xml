@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DaniyalTest</string>
+    <string name="app_name">Twilior</string>
     <string name="audio_device">Audio Device</string>
     <string name="callee">client identity or phone number</string>
     <string name="answer">Answer</string>

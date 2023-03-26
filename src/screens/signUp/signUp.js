@@ -106,7 +106,7 @@ export const SignUp = (props) => {
             "password": "password@testing.com"
         }
         try {
-            await axios._postApi('/auth', params).then(res => {
+            await axios._postApi('client/auth', params).then(res => {
                 console.log(res, 'sdsa')
                 if (res.status == 200) {
                     dispatch(tokenValue(res.data.token))
@@ -120,30 +120,30 @@ export const SignUp = (props) => {
 
     }
     const signUp = async () => {
-        // if (validateForm()) {
-        //     const params = {
-        //         "email": email,
-        //         "password": password,
-        //         "firstname": firstName,
-        //         "lastname": lastName,
-        //         "company": company,
-        //         "website": domain
-        //     }
-        //     try {
-        //         register(params).then((res)=>{
-        //             console.log(res, 'resgister res')
-        //             if(res.status == 200){
+        if (validateForm()) {
+            const params = {
+                "email": email,
+                "password": password,
+                "firstname": firstName,
+                "lastname": lastName,
+                "company": company,
+                "website": domain
+            }
+            try {
+                register(params).then((res)=>{
+                    console.log(res, 'resgister res')
+                    if(res.status == 200){
                         gotoVerification()
-        //             }
-        //             if(res.status==403){
-        //                 showBar(res.data.error,'error')
-        //             }
-        //         })
-        //     }
-        //     catch (e) {
-        //         console.log(e)
-        //     }
-        // }
+                    }
+                    if(res.status==403){
+                        showBar(res.data.error,'error')
+                    }
+                })
+            }
+            catch (e) {
+                console.log(e)
+            }
+        }
     }
 
     return (

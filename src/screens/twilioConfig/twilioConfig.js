@@ -5,7 +5,7 @@ import {AuthContext} from '../../context/authContext';
 
 
 export const TwilioConfig = (props) => {
-    const {userInfo} = useContext(AuthContext);
+    const {TempInfo} = useContext(AuthContext);
     const {
         navigation
     } = props
@@ -16,24 +16,25 @@ export const TwilioConfig = (props) => {
     }, [])
 
     const updateSSid = async () => {
-        // const params ={
-        //     ssid:ssid,
-        //     authkey:authToken,
-        //     email:userInfo.clientid
-        // }
-        // try {
-        //     await axios._postApi('/updatessid', params,userInfo.token).then(res => {
-        //         console.log(res, 'updatessid')
-        //         if (res.status = 200) {
+        const params ={
+            ssid:ssid,
+            authkey:authToken,
+            email:TempInfo.clientid
+        }
+        console.log(params)
+        try {
+            await axios._postApi('client/updatessid', params,TempInfo.token).then(res => {
+                console.log(res.data, 'updatessid')
+                if (res.status = 200) {
         //             console.log(res.data.numbers.numbers)
-                    navigation.navigate('TwilioConfigNum')
-                    // navigation.navigate('TwilioConfigNum',res.data.numbers.numbers)
-        //         }
-        //     })
-        // }
-        // catch (e) {
-        //     console.log(e)
-        // }
+                    // navigation.navigate('TwilioConfigNum')
+                    navigation.navigate('TwilioConfigNum',res.data.numbers.numbers)
+                }
+            })
+        }
+        catch (e) {
+            console.log(e)
+        }
     }
 
     return (

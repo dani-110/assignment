@@ -7,12 +7,12 @@ import { NotificationBarContext } from '../../../context/notificationBar';
 export const NotificationBar = () => {
 
   const { Show, Message,Status } = React.useContext(NotificationBarContext);
-
+console.log(Show,"show")
 const setStatusColor = () =>{
   switch(Status){
     case 'error':
-      return '#ff3232'
-      case 'success':
+      return '#f07171'
+      case 'success': 
       return 'darkgreen'
   }
     

@@ -1,18 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { SettingsStory } from './settingsStory';
 import { useDispatch, useSelector } from 'react-redux'
+import axios from '../../@core/services/utilsfunctions'
 
+import {AuthContext} from '../../context/authContext';
+import { NotificationBarContext } from '../../context/notificationBar';
+import AsyncStorage from '@react-native-community/async-storage';
+
+import Util from '../../util';
+import _ from "lodash";
 
 export const Settings = (props) => {
     const {
         navigation
     } = props
-    const [name, setName] = useState("Faizan UL Haq Siddiqui");
-    const [email, setEmail] = useState("faizan@livewirelabs.co");
-    const [company, setCompany] = useState("LiveWire Labs");
-    const [domain, setDomain] = useState("");
-    const [ssid, setSsid] = useState("Faizan UL Haq Siddiqui");
-    const [authToken, setAuthToken] = useState("");
+
+    const {userInfo,setUserInfo} = useContext(AuthContext);
+  const { showBar} = useContext(NotificationBarContext);
+
+    console.log(userInfo,'sadbk')
+    const [name, setName] = useState(`${userInfo.data.FirstName} ${userInfo.data.LastName}`);
+    const [email, setEmail] = useState(userInfo.data.Email);
+    const [company, setCompany] = useState(userInfo.data.Company);
+    const [domain, setDomain] = useState(userInfo.data.Website);
+    const [ssid, setSsid] = useState(userInfo.data.TwillioSSID);
+    const [authToken, setAuthToken] = useState(userInfo.data.TwillioAuthKey);
     const [phone, setPhone] = useState("8877656655");
     const [visible, setVisible] = useState(false)
     const [password, setPassword] = useState("");
@@ -32,6 +44,59 @@ export const Settings = (props) => {
     const toggleSecureEntry3 = () => {
         setSecureTextEntry3(!secureTextEntry3);
     };
+
+
+    const validateForm = () => {
+        let username = name.split(' ')
+        if (_.isEmpty(username[0])) {
+            showBar("Name is empty",'error')
+            return false
+        } else if (_.isEmpty(username.slice(1, username.length).join(' '))) {
+            showBar("Please provide your full name",'error')
+            return false
+        } else if (_.isEmpty(email)) {
+            showBar("Email is empty",'error')
+            return false
+        } else if (!Util.isEmailValid(email)) {
+            showBar("Email is not in correct format")
+            return false
+        }
+        return true
+    }
+
+    const updateProfile = async () => {
+        if (validateForm()) {
+
+        let username = name.split(' ')
+        const params ={
+            "company": company, 
+            "email": email,
+            "firstname": username[0],
+            "lastname": username.slice(1, username.length).join(' '),
+            "password": password, 
+            "website":domain,
+            "twillioSSID":ssid,
+            "twillioAuthKey":authToken,
+            "twillioPhoneNo":phone
+            }
+        try {
+            await axios._postApi('client/updateprofile', params,userInfo.token).then(res => {
+                if (res.status = 200) {
+                    let obj = {
+                        ...userInfo,
+                        data:res.data
+                    }
+                    setUserInfo(obj);
+                    AsyncStorage.setItem('userInfo', JSON.stringify(obj));
+                    showBar("Profile Updated!",'success')
+                }
+            })
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+    }
 
     return (
         <SettingsStory
@@ -64,6 +129,7 @@ export const Settings = (props) => {
             navigation={navigation}
             authToken={authToken}
             getAuthToken={(e) => setAuthToken(e)}
+            updateProfile={updateProfile}
         />
     )
 }

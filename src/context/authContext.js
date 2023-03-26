@@ -7,18 +7,19 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
   const [userInfo, setUserInfo] = useState({});
+  const [TempInfo, setTempInfo] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
 
   const register = async(params) => {
     setIsLoading(true);
 
-    return axios._postApi('/signup', params).then(res => {
+    return axios._postApi('client/signup', params).then(res => {
       console.log(res, ' in auth')
         if (res.status == 200) {
             let userInfo = res.data;
-            setUserInfo(userInfo);
-            AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
+            setTempInfo(userInfo);
+            // AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
             setIsLoading(false);
             return res
         }else{
@@ -33,10 +34,10 @@ export const AuthProvider = ({children}) => {
 
   const login = (params) => {
     setIsLoading(true);
-   return axios._postApi('/login', params).then(res => {
+   return axios._postApi('client/login', params).then(res => {
         if (res.status == 200) {
             let userInfo = res.data;
-            console.log(userInfo);
+            console.log(userInfo,"SJDS");
             setUserInfo(userInfo);
             AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
             setIsLoading(false);
@@ -99,6 +100,9 @@ export const AuthProvider = ({children}) => {
         register,
         login,
         logout,
+        setUserInfo,
+        setTempInfo,
+        TempInfo
       }}>
       {children}
     </AuthContext.Provider>

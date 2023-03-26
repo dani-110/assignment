@@ -5,12 +5,15 @@ import { CommonActions } from "@react-navigation/native";
 import axios from '../../@core/services/utilsfunctions'
 import _ from "lodash";
 import Util from '../../util';
-import { tokenValue, UserValue } from '../../@core/services/store';
+import { contactValue, tokenValue, UserValue } from '../../@core/services/store';
 
 import jwt_decode from "jwt-decode";
 import {AuthContext} from '../../context/authContext';
 
 import { NotificationBarContext } from '../../context/notificationBar';
+import Contacts from 'react-native-contacts';
+import { PermissionsAndroid } from 'react-native';
+
 
 export const Login = (props) => {
     const {
@@ -38,6 +41,10 @@ export const Login = (props) => {
         setSecureTextEntry(!secureTextEntry);
     };
 
+    useEffect(() => {
+        getContacts()
+    }, [])
+
 
     const gotoSignUp = () => {
         navigation.navigate('SignUp')
@@ -56,13 +63,13 @@ export const Login = (props) => {
 
     const validateForm = () => {
         if (_.isEmpty(email)) {
-            Util.topAlertError("Email is empty")
+            showBar("Email is empty",'error')
             return false
         } else if (!Util.isEmailValid(email)) {
-            Util.topAlertError("Email is not in correct format")
+            showBar("Email is not in correct format",'error')
             return false
         } else if (_.isEmpty(password)) {
-            Util.topAlertError("Password is empty")
+            showBar("Password is empty",'error')
             return false
         }
         return true
@@ -74,7 +81,7 @@ export const Login = (props) => {
             "password": "password@testing.com"
         }
         try {
-            await axios._postApi('/auth', params).then(res => {
+            await axios._postApi('client/auth', params).then(res => {
                 console.log(res, 'sdsa')
                 if (res.status == 200) {
                     dispatch(tokenValue(res.data.token))
@@ -89,27 +96,51 @@ export const Login = (props) => {
     }
 
     const loginx = async () => {
-        gotoDashboard()
-        // if (validateForm()) {
-        //     const params = {
-        //         "email": email,
-        //         "password": password,
-        //     }
-        //     try {
-        //         login(params).then((res)=>{
-        //             if(res.status==405){
-        //                 showBar(res.data.error,'error')
-        //             }
-        //             if(res.status==200){
-        //                 if(res.data.hasOwnProperty('error'))
-        //                 showBar(res.data.error,'error')
-        //             }
-        //         })
-        //     }
-        //     catch (e) {
-        //         console.log(e)
-        //     }
-        // }
+        // gotoDashboard()
+        if (validateForm()) {
+            const params = {
+                "email": email,
+                "password": password,
+            }
+            try {
+                login(params).then((res)=>{
+                    if(res.status==405){
+                        showBar(res.data.error,'error')
+                    }
+                    if(res.status==200){
+                        if(res.data.hasOwnProperty('error'))
+                        showBar(res.data.error,'error')
+                    }
+                })
+            }
+            catch (e) {
+                console.log(e)
+            }
+        }
+    }
+
+    const getContacts = () => {
+        PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
+            {
+                'title': 'Contacts',
+                'message': 'This app would like to view your contacts.',
+                'buttonPositive': 'Please accept bare mortal'
+            }
+        ).then(() => Contacts.getAll().then(contacts => {
+            console.log(contacts, 'contacts')
+
+            let arr = [];
+            contacts.map((e, i) => {
+                arr.push({
+                    value: e?.givenName + " " + e?.familyName,
+                    key: i,
+                    number: e?.phoneNumbers[0]?.number,
+                    e: e
+                })
+            })
+            dispatch(contactValue(arr.concat()))
+        }))
     }
 
     return (

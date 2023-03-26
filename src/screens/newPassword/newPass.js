@@ -60,7 +60,7 @@ export const NewPass = (props) => {
                 "password": password
             }
             try {
-                await axios._postApi('/resetpassword', param).then(res => {
+                await axios._postApi('client/resetpassword', param).then(res => {
                     console.log(res)
                     if (res.status == 200) {
                         if (res.data['clientid']) {

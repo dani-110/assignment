@@ -8,8 +8,9 @@ export const Conversation = (props) => {
         navigation
     } = props
 
-    const gotoChat = () => {
-        navigation.navigate('Chat', { new: false })
+    const gotoChat = (data) => {
+        console.log(data)
+        navigation.navigate('Chat', { new: false, data })
     }
     return (
         <ConversationStory

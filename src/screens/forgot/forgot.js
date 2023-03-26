@@ -33,7 +33,7 @@ export const Forgot = (props) => {
                 "email": email
             }
             try {
-                await axios._postApi('/resetcode', params).then(res => {
+                await axios._postApi('client/resetcode', params).then(res => {
                     console.log(res, 'response of resgister')
                     if (res.status == 200 && !res.data['error']) {
                         gotoVerification()
